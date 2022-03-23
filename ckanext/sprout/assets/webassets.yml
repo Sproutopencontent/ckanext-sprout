@@ -1,0 +1,14 @@
+# sprout-js:
+#   filter: rjsmin
+#   output: ckanext-sprout/%(version)s-sprout.js
+#   contents:
+#     - js/sprout.js
+#   extra:
+#     preload:
+#       - base/main
+
+# sprout-css:
+#   filter: cssrewrite
+#   output: ckanext-sprout/%(version)s-sprout.css
+#   contents:
+#     - css/sprout.css
