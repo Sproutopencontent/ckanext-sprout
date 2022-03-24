@@ -1,0 +1,21 @@
+body {
+    background: @brand-primary;
+  
+    .main,
+    & [role=main] {
+      background: @brand-background;
+  
+      & .secondary {
+        padding-right: 0;
+      }
+    }
+  
+    & [role=main] {
+      min-height: auto;
+      padding: 0;
+    }
+  
+    .primary {
+      background-color: transparent;
+    }
+  }
