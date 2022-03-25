@@ -7,8 +7,8 @@
 #     preload:
 #       - base/main
 
-# sprout-css:
-#   filter: cssrewrite
-#   output: ckanext-sprout/%(version)s-sprout.css
-#   contents:
-#     - css/sprout.css
+sprout-style:
+  filter: cssrewrite
+  output: ckanext-sprout/%(version)s-custom.css
+  contents:
+    - css/custom.css
