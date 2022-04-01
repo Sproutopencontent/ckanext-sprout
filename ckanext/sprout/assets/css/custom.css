@@ -2,7 +2,16 @@
     background: #1d6919;
 }
 
-.hero {
-    background-image: url("../../public/base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60 (1).jpg");
+@media (min-width: 768px) {
+    .homepage .hero {
+        min-height: 700px;
+        background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+        background-size: cover;
+    }
+}
 
+@media (min-width: 768px) {
+    .homepage .module-feeds {
+        background: #FFFFFF;
+    }
 }

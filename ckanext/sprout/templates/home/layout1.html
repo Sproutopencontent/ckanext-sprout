@@ -1,13 +1,24 @@
 {% ckan_extends %}
 
 {% block featured_group %}
+<div class="container">
     <div class="row">
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun_planting ares_2899150 crop VC icon 1d6919.png') }}" /></a>
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun_Cow_2899143 livestock VC icon 1d6919.png') }}" /></a>
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun_Reuse_2900314climatesmart.png') }}" /></a> 
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun_Drone_2899136 Emerging Fields icon 1d6919.png') }}" /></a>
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun-money-1008087-Value Added Services Icon.png') }}" /></a>
-        <a class="col-2"><img class="img-thumbnail" src="{{ h.url_for_static('/base/images/noun_Organic vegetables_2899137 crosscutting icon 1d6919.png') }}" /></a>
+        <a class="col-2"><img class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun_planting ares_2899150 crop VC icon 1d6919.png') }}" /></a>
+        <a class="col-2"><img  class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun_Cow_2899143 livestock VC icon 1d6919.png') }}" /></a>
+        <a class="col-2"><img class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun_Reuse_2900314climatesmart.png') }}" /></a>
+        <a class="col-2"><img class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun_Drone_2899136 Emerging Fields icon 1d6919.png') }}" /></a>
+        <a class="col-2"><img class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun-money-1008087-Value Added Services Icon.png') }}" /></a>
+        <a class="col-2"><img class="img-fluid"
+                src="{{ h.url_for_static('/base/images/noun_Organic vegetables_2899137 crosscutting icon 1d6919.png') }}" /></a>
     </div>
+</div>
+{% snippet 'snippets/updates.html' %}
+
+{% snippet 'snippets/stories.html' %}
 
 {% endblock %}
