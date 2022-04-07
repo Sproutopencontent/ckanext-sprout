@@ -1,83 +1,83 @@
 <div role="main">
-        <div class="main hero">
-                <div class="container">
-                        <div class="row">
-                                <div class="col-md-6">
-                                </div>
-                                <div class="col-md-6">
-                                        {% block search %}
-                                        {% snippet 'home/snippets/search.html' %}
-                                        {% endblock %}
-                                </div>
-                        </div>
+    <div class="main hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
                 </div>
-        </div>
-
-        <div class="main module-feeds">
-                <div class="container">
-                        <div class="row">
-                                <h2>Explore content</h2>
-                                <hr>
-                                </hr>
-                                <a class="col-2">
-                                        <figure class="figure">
-                                                <img class="img-fluid"
-                                                        src="{{ h.url_for_static('/base/images/noun_planting ares_2899150 crop VC icon 1d6919.png') }}" />
-                                                <figcaption class="figure-caption text-center">Food Crops Value Chain
-                                                </figcaption>
-                                        </figure>
-                                </a>
-                                <a class="col-2">
-                                        <figure class="figure">
-                                                <img class="img-fluid"
-                                                        src="{{ h.url_for_static('/base/images/noun_Cow_2899143 livestock VC icon 1d6919.png') }}" />
-                                                <figcaption class="figure-caption text-center">Livestock Value Chain
-                                                </figcaption>
-                                        </figure>
-                                </a>
-                                <a class="col-2">
-                                        <figure class="figure">
-
-                                                <img class="img-fluid"
-                                                        src="{{ h.url_for_static('/base/images/noun_Reuse_2900314climatesmart.png') }}" />
-                                                <figcaption class="figure-caption text-center">Value Added Services
-                                                </figcaption>
-                                        </figure>
-                                </a>
-                                <a class="col-2">
-                                        <figure class="figure">
-                                                <img class="img-fluid"
-                                                        src="{{ h.url_for_static('/base/images/noun_Drone_2899136 Emerging Fields icon 1d6919.png') }}" />
-                                                <figcaption class="figure-caption text-center">Emerging Fields and Technologies
-                                                </figcaption>
-                                        </figure>
-                                </a>
-                                <a class="col-2">
-                                        <figure class="figure">
-                                                <img class="img-fluid" height="1000px" width="1000px"
-                                                        src="{{ h.url_for_static('/base/images/noun-money-1008087-Value Added Services Icon.png') }}" />
-                                                <figcaption class="figure-caption text-center">Climate Smart Agriculture
-                                                </figcaption>
-                                        </figure>
-                                </a>
-                                <a class="col-2">
-                                        <figure class="figure">
-                                                <img class="img-fluid"
-                                                        src="{{ h.url_for_static('/base/images/noun_Organic vegetables_2899137 crosscutting icon 1d6919.png') }}" />
-
-                                                <figcaption class="figure-caption text-center">Cross Cutting Themes
-                                                </figcaption>
-                                        </figure>
-                                </a>
-
-                        </div>
+                <div class="col-md-6">
+                    {% block search %}
+                    {% snippet 'home/snippets/search.html' %}
+                    {% endblock %}
                 </div>
+            </div>
         </div>
+    </div>
 
-        <div>
-                {% snippet 'snippets/updates.html' %}
+    <div class="main module-feeds">
+        <div class="container">
+            <div class="row">
+                <h2>Explore content</h2>
+                <hr>
+                </hr>
+                <a class="col-2">
+                    <figure class="figure">
+                        <img class="img-fluid"
+                            src="{{ h.url_for_static('/base/images/noun_planting ares_2899150 crop VC icon 1d6919.png') }}" />
+                        <figcaption class="figure-caption text-center">Food Crops Value Chain
+                        </figcaption>
+                    </figure>
+                </a>
+                <a class="col-2">
+                    <figure class="figure">
+                        <img class="img-fluid"
+                            src="{{ h.url_for_static('/base/images/noun_Cow_2899143 livestock VC icon 1d6919.png') }}" />
+                        <figcaption class="figure-caption text-center">Livestock Value Chain
+                        </figcaption>
+                    </figure>
+                </a>
+                <a class="col-2">
+                    <figure class="figure">
+
+                        <img class="img-fluid"
+                            src="{{ h.url_for_static('/base/images/noun_Reuse_2900314climatesmart.png') }}" />
+                        <figcaption class="figure-caption text-center">Value Added Services
+                        </figcaption>
+                    </figure>
+                </a>
+                <a class="col-2">
+                    <figure class="figure">
+                        <img class="img-fluid"
+                            src="{{ h.url_for_static('/base/images/noun_Drone_2899136 Emerging Fields icon 1d6919.png') }}" />
+                        <figcaption class="figure-caption text-center">Emerging Fields and Technologies
+                        </figcaption>
+                    </figure>
+                </a>
+                <a class="col-2">
+                    <figure class="figure">
+                        <img class="img-fluid" height="1000px" width="1000px"
+                            src="{{ h.url_for_static('/base/images/noun-money-1008087-Value Added Services Icon.png') }}" />
+                        <figcaption class="figure-caption text-center">Climate Smart Agriculture
+                        </figcaption>
+                    </figure>
+                </a>
+                <a class="col-2">
+                    <figure class="figure">
+                        <img class="img-fluid"
+                            src="{{ h.url_for_static('/base/images/noun_Organic vegetables_2899137 crosscutting icon 1d6919.png') }}" />
+
+                        <figcaption class="figure-caption text-center">Cross Cutting Themes
+                        </figcaption>
+                    </figure>
+                </a>
+
+            </div>
         </div>
-        <div>
-                {% snippet 'snippets/stories.html' %}
-        </div>
+    </div>
+
+    <div>
+        {% snippet 'snippets/updates.html' %}
+    </div>
+    <div>
+        {% snippet 'snippets/stories.html' %}
+    </div>
 </div>
