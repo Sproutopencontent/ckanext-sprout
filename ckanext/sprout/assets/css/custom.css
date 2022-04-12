@@ -1,30 +1,5 @@
-.masthead {
-    background: #1d6919;
-}
-
-@media (min-width: 768px) {
-    .homepage .hero {
-        min-height: 700px;
-        background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
-        background-size: cover;
-    }
-}
-
-@media (min-width: 768px) {
-    .homepage .module-feeds {
-        background: #FFFFFF;
-    }
-}
-
-.welcome {
-    background: rgba(255, 255, 255, .2);
-    border-radius: 10px;
-    padding: 10px;
-    color: #FFFFFF;
-}
-
+/* Please check https://docs.ckan.org/en/2.8/theming/ for the already existing stylesheets in CKAN core. */
+/* Add your custom LESS code here */
 .footer {
-    padding: 4rem 0;
-    background: #1d6919;
-    color: #FFFFFF;
+  background: #1d6919;
 }

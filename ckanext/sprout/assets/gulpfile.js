@@ -18,10 +18,10 @@ gulp.task('less', function () {
     .pipe(gulp.dest('css'));
 });
 
-// gulp.task('fonts', function() {
-//   return gulp.src('fonts/*')
-//     .pipe(gulp.dest('../public/base/fonts'))
-// })
+gulp.task('fonts', function() {
+  return gulp.src('fonts/*')
+    .pipe(gulp.dest('../public/base/fonts'))
+})
 
 // Watch for LESS file changes
 gulp.task("watch", function () {
