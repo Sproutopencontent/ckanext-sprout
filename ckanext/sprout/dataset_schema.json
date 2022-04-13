@@ -1,0 +1,99 @@
+{
+    "scheming_version": 2,
+    "dataset_type": "dataset",
+    "about": "Sprout schema",
+    "about_url": "",
+    "dataset_fields": [
+        {
+            "field_name": "title",
+            "label": "Title",
+            "preset": "title",
+            "form_placeholder": "Title of the dataset"
+        },
+        {
+            "field_name": "name",
+            "label": "URL",
+            "preset": "dataset_slug"
+        },
+        {
+            "field_name": "description",
+            "label": "Description",
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+        },
+        {
+            "field_name": "tag_string",
+            "label": "Tags",
+            "preset": "tag_string_autocomplete"
+        },
+        {
+            "field_name": "owner_org",
+            "label": "Organization",
+            "preset": "dataset_organization"
+        },
+        {
+            "field_name": "url",
+            "label": "Website",
+            "form_placeholder": "http://example.com",
+            "display_property": "foaf:homepage",
+            "display_snippet": "link.html"
+        },
+        {
+            "field_name": "contact_name",
+            "label": "Contact name"
+        },
+        {
+            "field_name": "contact_email",
+            "label": "Contact email",
+            "display_snippet": "email.html",
+            "validators": "email_validator",
+            "form_placeholder": "someone@somewhere.com"
+        },
+        {
+            "field_name": "license_id",
+            "label": "License",
+            "form_snippet": "license.html",
+            "help_text": "License definitions and additional information can be found at http://opendefinition.org/"
+        }
+    ],
+    "resource_fields": [
+        {
+            "field_name": "url",
+            "label": "URL",
+            "preset": "resource_url_upload"
+        },
+        {
+            "field_name": "name",
+            "label": "Name",
+            "form_placeholder": "eg. January 2011 Gold Prices"
+        },
+        {
+            "field_name": "description",
+            "label": "Description",
+            "form_snippet": "markdown.html",
+            "form_placeholder": "Some useful notes about the data"
+        },
+        {
+            "field_name": "format",
+            "label": "Format",
+            "preset": "resource_format_autocomplete"
+        },
+        {
+
+            "field_name": "language",
+            "required": true,
+            "label": "Language",
+            "preset": "multiple_select",
+            "choices": [
+                {
+                    "label": "English",
+                    "value": "EN"
+                },
+                {
+                    "label": "Kiswahili",
+                    "value": "SW"
+                }
+            ]
+        }
+    ]
+}
