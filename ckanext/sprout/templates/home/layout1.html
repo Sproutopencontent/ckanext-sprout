@@ -13,18 +13,16 @@
         </div>
     </div>
 
-    <div class="main module-feeds">
-        <div class="container">
-            
-                    {% block featured_group %}
-                    {% snippet 'home/snippets/featured_group.html' %}
-                    {% endblock %}
-              
-        </div>
+    <div class="container">
+        <h2>Explore content</h2>
+        <hr>
+        {% block featured_group %}
+        {% snippet 'home/snippets/featured_group.html' %}
+        {% endblock %}
     </div>
 
 
-    <div class="main module-feeds">
+    <!-- <div class="main module-feeds">
         <div class="container">
             <div class="row justify-content-md-center">
                 <h2>Explore content</h2>
@@ -83,7 +81,7 @@
 
             </div>
         </div>
-    </div>
+    </div> -->
 
     <div class="main module-feeds">
         {% snippet 'snippets/updates.html' %}

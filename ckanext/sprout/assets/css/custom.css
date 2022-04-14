@@ -27,6 +27,21 @@ body [role=main] {
   background: #1d6919;
 }
 
+.masthead .navigation .nav-pills li.active a {
+  background-color: #00B74F;
+  color: #FFFFFF
+}
+
+.masthead .navigation .nav-pills li a:hover .svg-icon,
+.masthead .navigation .nav-pills li a:focus .svg-icon {
+  fill: #FFFFFF !important;
+}
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li a:focus {
+  color: #EEE;
+  background-color: #00B74F;
+}
+
 .welcome {
   background: rgba(255, 255, 255, .2);
   border-radius: 10px;
@@ -34,6 +49,9 @@ body [role=main] {
   color: #FFFFFF;
 }
 
+.fa-home {
+  color: #00B74F;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
