@@ -1,5 +1,92 @@
 /* Please check https://docs.ckan.org/en/2.8/theming/ for the already existing stylesheets in CKAN core. */
 /* Add your custom LESS code here */
-.footer {
+.masthead {
   background: #1d6919;
+}
+
+@media (min-width: 768px) {
+  .homepage .hero {
+      min-height: 700px;
+      background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+      background-size: cover;
+  }
+}
+
+@media (min-width: 768px) {
+  .homepage .module-feeds {
+      background: #FFFFFF;
+  }
+}
+
+body .main,
+body [role=main] {
+  background: #FFFFFF;
+}
+
+.account-masthead {
+  background: #1d6919;
+}
+
+.masthead .navigation .nav-pills li.active a {
+  background-color: #00B74F;
+  color: #FFFFFF
+}
+
+.masthead .navigation .nav-pills li a:hover .svg-icon,
+.masthead .navigation .nav-pills li a:focus .svg-icon {
+  fill: #FFFFFF !important;
+}
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li a:focus {
+  color: #EEE;
+  background-color: #00B74F;
+}
+
+.welcome {
+  background: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  padding: 10px;
+  color: #FFFFFF;
+}
+
+.fa-home {
+  color: #00B74F;
+}
+
+.module-heading {
+  background: #1d6919;
+  color: #FFFFFF;
+}
+
+.btn-primary {
+  color: #FFFFFF;
+  background-color: #1d6919;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus,
+.btn-primary.focus {
+  border-color: transparent;
+  background-color: #00B74F;
+}
+
+.footer {
+  padding: 4rem 0;
+  background: #1d6919;
+  color: #FFFFFF;
+}
+
+.footer-links:link, .footer-links:visited {
+  background-color: #1d6919;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.footer-links:hover, .footer-links:active {
+  background-color: black;
+  color: #1d6919;
 }
