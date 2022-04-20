@@ -1,0 +1,28 @@
+{% set stats = h.get_site_statistics() %}
+
+<div class="stats">
+  <div class="inner">
+    <ul>
+      {% block stats_group %}
+      <li>
+        <a href="{{ h.url_for('dataset.search') }}">
+          {{ _('Dataset') if stats.dataset_count == 1 else _('Datasets') }}
+        </a>
+        <strong>{{ h.SI_number_span(stats.dataset_count) }}</strong>
+      </li>
+      <li>
+        <a href="{{ h.url_for(controller='organization', action='index') }}">
+          {{ _('Organization') if stats.organization_count == 1 else _('Organizations') }}
+        </a>
+        <strong>{{ h.SI_number_span(stats.organization_count) }}</strong>
+      </li>
+      <li>
+        <a href="{{ h.url_for(controller='group', action='index') }}">
+          {{ _('Group') if stats.group_count == 1 else _('Groups') }}
+        </a>
+        <strong>{{ h.SI_number_span(stats.group_count) }}</strong>
+      </li>
+      {% endblock %}
+    </ul>
+  </div>
+</div>
