@@ -6,9 +6,9 @@
   {% set truncate_title = truncate_title or 0 %}
   {% set title = group.title or group.name %}
   {% block group_item_header_image %}
-  <div class="col-sm-2">
+  <div class="col-sm-2 col-md-offset-1">
     <figure class="figure">
-      <a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
+      <a class="group-name" href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
         <img class="img-fluid" width="200px" height="200px"
           src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}"
           alt="{{ group.name }}" />

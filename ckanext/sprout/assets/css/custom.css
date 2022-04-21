@@ -72,6 +72,25 @@ body [role=main] {
   background-color: #00B74F;
 }
 
+.group-name a:hover{
+  color: #00B74F;
+}
+
+.stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  margin: 1.5rem 0;
+  height: 100px;
+  width: 100%;
+  /* padding-top: 6rem; */
+}
+
 .footer {
   padding: 4rem 0;
   background: #1d6919;
@@ -89,6 +108,10 @@ body [role=main] {
 .footer-links:hover, .footer-links:active {
   background-color: black;
   color: #1d6919;
+}
+
+a {
+color: #00B74F;
 }
 
 @font-face {
