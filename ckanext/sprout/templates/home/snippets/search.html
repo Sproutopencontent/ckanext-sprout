@@ -1,20 +1,19 @@
-{% block search %}
+{% set tags = h.get_facet_items_dict('tags', c.search_facets, limit=3) %}
+{% set placeholder = _('E.g. environment') %}
 
-<div class="row welcome">
-    <h2>Welcome to Sprout</h2>
-    <p>Sprout is the open content agriculture platform where global agriculture experts and farmer facing organizations
-        meet to share and discover farmer-friendly,
-        digital ready content and services designed to build smallholder skills, resilience and income earning
-        opportunities.
-        The platform is free of charge.
-    </p>
-    <p>Sprout has been designed by Mercy Corps AgriFin, developed and hosted by KALRO and funded by GIZ Digital
-        Agriculture Africa.</p>
-    <div>
-       <a href="#" ><button type="button" class="btn btn-success">Learn More</button></a>
+<div class="module module-shallow">
+  <form class="module-content search-form" method="get" action="{% url_for 'dataset.search' %}">
+    <div class="search-input form-group search-giant">
+      <input aria-label="{% block header_site_search_label %}{{ _('Search datasets') }}{% endblock %}" id="field-main-search" type="text" class="form-control" name="q" value="" autocomplete="off" placeholder="{% block search_placeholder %}{{ placeholder }}{% endblock %}" />
+      <button type="submit" aria-labelledby="search-label">
+        <i class="fa fa-search"></i>
+        <span class="sr-only" id="search-label">{{ _('Search') }}</span>
+      </button>
     </div>
+  </form>
+  <div class="tags">
+    {% for tag in tags %}
+      <a class="tag" href="{% url_for 'dataset.search', tags=tag.name %}">{{ h.truncate(tag.display_name, 22) }}</a>
+    {% endfor %}
+  </div>
 </div>
-
-
-
-{% endblock %}

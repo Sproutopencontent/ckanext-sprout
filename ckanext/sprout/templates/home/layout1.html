@@ -5,10 +5,17 @@
                 <div class="col-md-6">
                 </div>
                 <div class="col-md-6">
-                    {% block search %}
-                    {% snippet 'home/snippets/search.html' %}
+                    {% block promoted %}
+                    {% snippet 'home/snippets/promoted.html' %}
                     {% endblock %}
                 </div>
+            </div>
+            <div class="row search-row">
+                <div class="col-md-12">
+                {% block search %}
+                {% snippet 'home/snippets/search.html' %}
+                {% endblock %}
+            </div>
             </div>
         </div>
     </div>
@@ -21,14 +28,12 @@
         {% endblock %}
     </div>
 
-
     <div class="container">
-          <div class="row">
-            <div class="col-md-10 col-md-offset-1">
+          <div class="row stats-row">
+            <div class="col col-md-offset-1">
               {% snippet 'home/snippets/stats.html' %} 
             </div>
         </div>
-
     </div>
         
     <div class="main module-feeds">

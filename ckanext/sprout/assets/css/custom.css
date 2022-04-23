@@ -4,17 +4,17 @@
   background: #1d6919;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .homepage .hero {
-      min-height: 700px;
-      background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
-      background-size: cover;
+    min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-size: cover;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 700px) {
   .homepage .module-feeds {
-      background: #FFFFFF;
+    background: #FFFFFF;
   }
 }
 
@@ -24,7 +24,16 @@ body [role=main] {
 }
 
 .account-masthead {
-  background: #1d6919;
+  background: #FFFFFF;
+  min-height: 120px;
+  background-image: url("../../../base/images/Sprout-Logo-final1 250x100.png");
+  background-repeat: no-repeat;
+  border-left: 400px solid #FFFFFF;
+}
+
+.navbar {
+  min-height: 30px;
+  padding: 0;
 }
 
 .masthead .navigation .nav-pills li.active a {
@@ -36,6 +45,7 @@ body [role=main] {
 .masthead .navigation .nav-pills li a:focus .svg-icon {
   fill: #FFFFFF !important;
 }
+
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus {
   color: #EEE;
@@ -72,8 +82,13 @@ body [role=main] {
   background-color: #00B74F;
 }
 
-.group-name a:hover{
+.group-name a:hover {
   color: #00B74F;
+}
+
+.wrapper {
+  border: none;
+  box-shadow: none;
 }
 
 .stats {
@@ -81,14 +96,27 @@ body [role=main] {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-line-pack: center;
-      align-content: center;
+  align-content: center;
   margin: 1.5rem 0;
   height: 100px;
   width: 100%;
-  /* padding-top: 6rem; */
+}
+
+.stats-row {
+  padding: 6rem;
+}
+
+.search-row {
+  padding-top: 35rem;
+  padding-left: 10rem;
+  width: 100%;
+}
+
+.search-form {
+  border: none;
 }
 
 .footer {
@@ -97,7 +125,12 @@ body [role=main] {
   color: #FFFFFF;
 }
 
-.footer-links:link, .footer-links:visited {
+.site-footer {
+  background-color: #1d6919;
+}
+
+.footer-links:link,
+.footer-links:visited {
   background-color: #1d6919;
   color: black;
   text-align: center;
@@ -105,13 +138,14 @@ body [role=main] {
   display: inline-block;
 }
 
-.footer-links:hover, .footer-links:active {
-  background-color: black;
+.footer-links:hover,
+.footer-links:active {
+  /* background-color: #00B74F; */
   color: #1d6919;
 }
 
 a {
-color: #00B74F;
+  color: #00B74F;
 }
 
 @font-face {
