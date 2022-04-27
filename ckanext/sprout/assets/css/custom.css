@@ -23,17 +23,29 @@ body [role=main] {
   background: #FFFFFF;
 }
 
+.homepage [role=main] {
+  padding: 0;
+}
+
 .account-masthead {
   background: #FFFFFF;
   min-height: 120px;
   background-image: url("../../../base/images/Sprout-Logo-final1 250x100.png");
   background-repeat: no-repeat;
-  border-left: 400px solid #FFFFFF;
+  border-left: 350px solid #FFFFFF;
 }
 
 .navbar {
-  min-height: 30px;
+  min-height: 20px;
   padding: 0;
+}
+
+.nav-pills {
+  font-size: 18px;
+}
+
+.masthead .navbar-collapse {
+  float: left !important;
 }
 
 .masthead .navigation .nav-pills li.active a {
@@ -57,6 +69,7 @@ body [role=main] {
   border-radius: 10px;
   padding: 10px;
   color: #FFFFFF;
+  margin-top: 40px;
 }
 
 .fa-home {
