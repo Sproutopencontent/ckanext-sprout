@@ -3,7 +3,7 @@
 <div class="stats text-center">
     {% block stats_group %}
     <div class="col col-lg-4">
-        <a class="h4 text-end" href="{{ h.url_for('dataset.search') }}">
+        <a class="stats-panel" href="{{ h.url_for('dataset.search') }}">
             {{ _('Dataset') if stats.dataset_count == 1 else _('Datasets') }}
             <hr>
             </hr>
@@ -11,7 +11,7 @@
         </a>
     </div>
     <div class="col col-lg-4">
-        <a class="h4" href="{{ h.url_for(controller='organization', action='index') }}">
+        <a class="stats-panel" href="{{ h.url_for(controller='organization', action='index') }}">
             {{ _('Organization') if stats.organization_count == 1 else _('Organizations') }}
             <hr>
             </hr>
@@ -19,7 +19,7 @@
         </a>
     </div>
     <div class="col col-lg-4">
-        <a class="h4" href="{{ h.url_for(controller='group', action='index') }}">
+        <a class="stats-panel" href="{{ h.url_for(controller='group', action='index') }}">
             {{ _('Group') if stats.group_count == 1 else _('Groups') }}
             <hr>
             </hr>
