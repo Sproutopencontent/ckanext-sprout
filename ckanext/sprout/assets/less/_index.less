@@ -1,6 +1,6 @@
 body {
   font-family: @font-primary;
-  background: @brand-primary;
+  background: @brand-background;
 
   .main,
   & [role=main] {
@@ -15,10 +15,6 @@ body {
     min-height: auto;
     padding: 0;
   }
-
-  .primary {
-    background-color: transparent;
-  }
 }
 
 .masthead {
@@ -26,4 +22,96 @@ body {
     top: 0;
     background: transparent;
   }
+}
+
+.masthead {
+  background: @brand-primary;
+}
+
+@media (min-width: 700px) {
+  .homepage .hero {
+    min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-size: cover;
+  }
+}
+
+@media (min-width: 700px) {
+  .homepage .module-feeds {
+    background: @white;
+  }
+}
+
+.homepage [role=main] {
+  padding: 0;
+}
+
+.account-masthead {
+  background: @white;
+  min-height: 120px;
+  background-image: url("../../../base/images/Sprout-Logo-final1 250x100.png");
+  background-repeat: no-repeat;
+  border-left: 350px solid @white;
+}
+
+.welcome {
+  background: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  padding: 10px;
+  color: @white;
+  margin-top: 40px;
+}
+
+.fa-home {
+  color: @black;
+}
+
+.module-heading {
+  background: @brand-primary;
+  color:  @white;
+}
+
+.group-name a:hover {
+  color: @brand-quaternary;
+}
+
+.wrapper {
+  border: none;
+  box-shadow: none;
+}
+
+.stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  margin: 1.5rem 0;
+  height: 100px;
+  width: 100%;
+}
+
+.stats-row {
+  padding: 6rem;
+}
+
+.search-row {
+  padding-top: 35rem;
+  padding-left: 10rem;
+  width: 100%;
+}
+
+.search-form {
+  border: none;
+}
+
+a {
+  color: @brand-quaternary;
+}
+
+a:hover {
+  text-decoration: none;
 }
