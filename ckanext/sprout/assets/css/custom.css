@@ -49,13 +49,6 @@ h1 {
 p {
   font-size: 16px;
 }
-.account-masthead {
-  background: #FFFFFF;
-  min-height: 120px;
-  background-image: url("../../../base/images/Sprout-Logo-final1 250x100.png");
-  background-repeat: no-repeat;
-  border-left: 350px solid #FFFFFF;
-}
 .welcome {
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
@@ -157,7 +150,7 @@ a:hover {
   float: left !important;
 }
 .masthead .navigation .nav-pills li.active a {
-  background-color: #00B74F;
+  background-color: #0a9900;
   color: #FFFFFF;
 }
 .masthead .navigation .nav-pills li a:hover .svg-icon,
@@ -166,8 +159,32 @@ a:hover {
 }
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus {
-  color: #EEE;
-  background-color: #00B74F;
+  color: #FFFFFF;
+  background-color: #0a9900;
+}
+.account-masthead {
+  background: #FFFFFF;
+}
+.account-masthead .account {
+  margin-right: 20px;
+  background: #FFFFFF !important;
+  padding-bottom: 10px;
+}
+.sprout-logo {
+  background: #FFFFFF;
+  width: 550px;
+  height: 150px;
+  background-image: url("../../../base/images/Sprout-Logo-final1-1(1).jpg");
+  background-repeat: no-repeat;
+  border-left: 80px solid #FFFFFF;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-size: cover;
+  background-origin: content-box;
+}
+.account-masthead .account ul li a:hover {
+  color: #FFFFFF;
+  background-color: #1d6919;
 }
 .btn-primary {
   color: #FFFFFF;
@@ -179,7 +196,7 @@ a:hover {
 .btn-primary:active:focus,
 .btn-primary.focus {
   border-color: transparent;
-  background-color: #00B74F;
+  background-color: #0a9900;
 }
 @font-face {
   font-family: "Open Sans";

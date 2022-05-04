@@ -12,17 +12,44 @@
 }
 
 .masthead .navigation .nav-pills li.active a {
-  background-color: #00B74F;
-  color: #FFFFFF
+  background-color: @brand-quaternary;
+  color: @brand-background;
 }
 
 .masthead .navigation .nav-pills li a:hover .svg-icon,
 .masthead .navigation .nav-pills li a:focus .svg-icon {
-  fill: #FFFFFF !important;
+  fill: @brand-background  !important;
 }
 
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus {
-  color: #EEE;
-  background-color: #00B74F;
+  color: @brand-background;
+  background-color: @brand-quaternary;
+}
+
+.account-masthead {
+  background: @white;
+}
+
+.account-masthead .account {
+  margin-right: 20px;
+  background: @white  !important;
+  padding-bottom: 10px;
+}
+
+.sprout-logo {
+  background: @white;
+  width: 550px;
+  height: 150px;
+  background-image: url("../../../base/images/Sprout-Logo-final1-1(1).jpg");
+  background-repeat: no-repeat;
+  border-left: 80px solid @white;
+  box-sizing: border-box;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+.account-masthead .account ul li a:hover {
+  color: @brand-background;
+  background-color: @brand-primary;
 }
