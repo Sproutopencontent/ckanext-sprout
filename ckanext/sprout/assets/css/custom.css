@@ -109,8 +109,11 @@ a:hover {
 }
 .media-heading {
   font-weight: 300;
+  -moz-text-align-last: center;
+       text-align-last: center;
   color: #0a9900;
-  float: right;
+  display: inline-block;
+  margin-top: 2rem;
 }
 .card-title {
   font-weight: 300;
@@ -132,13 +135,6 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-}
-.group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
 }
 .rounded-img {
   border-radius: 50%;
