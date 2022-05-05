@@ -139,6 +139,11 @@ a:hover {
 .rounded-img {
   border-radius: 50%;
 }
+@media only screen and (min-width: 500px) and (max-width: 1155px) {
+  .col-centered {
+    display: block;
+  }
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
