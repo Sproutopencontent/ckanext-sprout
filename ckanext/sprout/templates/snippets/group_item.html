@@ -1,27 +1,26 @@
 {% block group_item %}
 {% block group_item_header %}
-<div>
-<header>
-  {% set truncate=truncate or 0 %}
-  {% set truncate_title = truncate_title or 0 %}
-  {% set title = group.title or group.name %}
-  {% block group_item_header_image %}
-  <div class="col-xs-12 col-sm-6 col-md-2">
-    <figure class="figure">
-      <a class="group-name" href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
-        <img class="img-fluid" width="200px" height="200px"
-          src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}"
-          alt="{{ group.name }}" />
-      </a>
-    </figure>
-
-    {% endblock %}
-    {% block group_item_header_title %}
-    <h3 class="media-heading text-center"><a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">{{
-        group.title or group.name }}</a></h3>
-    {% endblock %}
-  </div>
-</header>
+<div class="group">
+  <header class="group">
+    {% set truncate=truncate or 0 %}
+    {% set truncate_title = truncate_title or 0 %}
+    {% set title = group.title or group.name %}
+    {% block group_item_header_image %}
+    <div class="col-xs-12 col-sm-6 ">
+      <figure class="figure">
+        <a class="group-name" href="{{ h.url_for(controller='group', action='read', id=group.name) }}">
+          <img class="img-fluid rounded-img" width="200px" height="200px"
+            src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}"
+            alt="{{ group.name }}" />
+        </a>
+      </figure>
+      {% endblock %}
+      {% block group_item_header_title %}
+      <h3 class="media-heading d-inline-block text-truncate"><a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">{{
+          group.title or group.name }}</a></h3>
+      {% endblock %}
+    </div>
+  </header>
 </div>
 {% endblock %}
 {% endblock %}

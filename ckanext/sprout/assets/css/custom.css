@@ -110,6 +110,7 @@ a:hover {
 .media-heading {
   font-weight: 300;
   color: #0a9900;
+  float: right;
 }
 .card-title {
   font-weight: 300;
@@ -117,6 +118,30 @@ a:hover {
 }
 .card-text {
   font-size: 16px;
+}
+.fa-home {
+  color: #0a9900;
+}
+.col-centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.rounded-img {
+  border-radius: 50%;
 }
 .footer {
   padding: 4rem 0;
@@ -168,15 +193,13 @@ a:hover {
 .account-masthead .account {
   margin-right: 20px;
   background: #FFFFFF !important;
-  padding-bottom: 10px;
 }
 .sprout-logo {
   background: #FFFFFF;
-  width: 550px;
-  height: 150px;
+  width: 380px;
+  height: 130px;
   background-image: url("../../../base/images/Sprout-Logo-final1-1(1).jpg");
   background-repeat: no-repeat;
-  border-left: 80px solid #FFFFFF;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   background-size: cover;
@@ -197,6 +220,9 @@ a:hover {
 .btn-primary.focus {
   border-color: transparent;
   background-color: #0a9900;
+}
+.btn-success {
+  font-weight: 400;
 }
 @font-face {
   font-family: "Open Sans";
