@@ -1,0 +1,44 @@
+<div role="main">
+    <div class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                </div>
+                <div class="col-md-6">
+                    {% block promoted %}
+                    {% snippet 'home/snippets/promoted.html' %}
+                    {% endblock %}
+                </div>
+            </div>
+            <div class="row search-row">
+                <div class="col-md-12">
+                {% block search %}
+                {% snippet 'home/snippets/search.html' %}
+                {% endblock %}
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Explore content</h2>
+        <hr>
+        {% block featured_group %}
+        {% snippet 'home/snippets/featured_group.html' %}
+        {% endblock %}
+    </div>
+
+    <div class="container">
+        <h2>Stats</h2>
+        <hr>
+          <div class="row stats-row">
+            <div class="col col-md-offset-1">
+              {% snippet 'home/snippets/stats.html' %} 
+            </div>
+        </div>
+    </div>
+        
+    <div class="main module-feeds">
+        {% snippet 'snippets/stories.html' %}
+    </div>
+</div>

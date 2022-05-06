@@ -1,0 +1,275 @@
+/* Please check https://docs.ckan.org/en/2.8/theming/ for the already existing stylesheets in CKAN core. */
+/* Add your custom LESS code here */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #FFFFFF;
+}
+body .main,
+body [role=main] {
+  background: #FFFFFF;
+}
+body .main .secondary,
+body [role=main] .secondary {
+  padding-right: 0;
+}
+body [role=main] {
+  min-height: auto;
+  padding: 0;
+}
+.masthead .debug {
+  top: 0;
+  background: transparent;
+}
+.masthead {
+  background: #1d6919;
+}
+@media (min-width: 700px) {
+  .homepage .hero {
+    min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-size: cover;
+  }
+}
+@media (min-width: 700px) {
+  .homepage .module-feeds {
+    background: #FFFFFF;
+  }
+}
+.homepage [role=main] {
+  padding: 0;
+}
+h2 {
+  font-size: 30px;
+  font-weight: 300;
+}
+h1 {
+  font-size: 35px;
+  font-weight: 300;
+}
+p {
+  font-size: 16px;
+}
+.welcome {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 10px;
+  color: #FFFFFF;
+  margin-top: 40px;
+  font-size: 15px;
+}
+.fa-home {
+  color: #000000;
+}
+.module-heading {
+  background: #1d6919;
+  color: #FFFFFF;
+}
+.group-name a:hover {
+  color: #0a9900;
+}
+.wrapper {
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+.stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  margin: 1.5rem 0;
+  height: 100px;
+  width: 100%;
+}
+.stats-row {
+  padding: 6rem;
+}
+.search-row {
+  padding-top: 35rem;
+  padding-left: 10rem;
+  width: 100%;
+}
+.stats-panel {
+  font-size: 30px;
+  font-weight: 300;
+  color: #414141;
+}
+.search-form {
+  border: none;
+}
+a {
+  color: #0a9900;
+}
+a:hover {
+  text-decoration: none;
+}
+.media-heading {
+  font-weight: 300;
+  -moz-text-align-last: center;
+       text-align-last: center;
+  color: #0a9900;
+  display: inline-block;
+  margin-top: 2rem;
+}
+.card-title {
+  font-weight: 300;
+  font-size: 20px;
+}
+.card-text {
+  font-size: 16px;
+}
+.fa-home {
+  color: #0a9900;
+}
+.col-centered {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.rounded-img {
+  border-radius: 50%;
+}
+@media only screen and (min-width: 500px) and (max-width: 1155px) {
+  .col-centered {
+    display: block;
+  }
+}
+.footer {
+  padding: 4rem 0;
+  background: #1d6919;
+  color: #FFFFFF;
+}
+.site-footer {
+  background-color: #1d6919;
+  text-decoration: none;
+}
+.footer-links:link,
+.footer-links:visited {
+  background-color: #1d6919;
+  text-align: center;
+  display: inline-block;
+  text-decoration: none;
+}
+.footer-links:hover,
+.footer-links:active {
+  color: #1d6919;
+  text-decoration: none;
+}
+.navbar {
+  min-height: 20px;
+  padding: 0;
+}
+.nav-pills {
+  font-size: 18px;
+}
+.masthead .navbar-collapse {
+  float: left !important;
+}
+.masthead .navigation .nav-pills li.active a {
+  background-color: #0a9900;
+  color: #FFFFFF;
+}
+.masthead .navigation .nav-pills li a:hover .svg-icon,
+.masthead .navigation .nav-pills li a:focus .svg-icon {
+  fill: #FFFFFF !important;
+}
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li a:focus {
+  color: #FFFFFF;
+  background-color: #0a9900;
+}
+.account-masthead {
+  background: #FFFFFF;
+}
+.account-masthead .account {
+  margin-right: 20px;
+  background: #FFFFFF !important;
+}
+.sprout-logo {
+  background: #FFFFFF;
+  width: 380px;
+  height: 130px;
+  background-image: url("../../../base/images/Sprout-Logo-final1-1(1).jpg");
+  background-repeat: no-repeat;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  background-size: cover;
+  background-origin: content-box;
+}
+.account-masthead .account ul li a:hover {
+  color: #FFFFFF;
+  background-color: #1d6919;
+}
+.btn-primary {
+  color: #FFFFFF;
+  background-color: #1d6919;
+}
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus,
+.btn-primary.focus {
+  border-color: transparent;
+  background-color: #0a9900;
+}
+.btn-success {
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-LightItalic.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url('/base/fonts/OpenSans-MediumItalic.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+}

@@ -1,0 +1,167 @@
+body {
+  font-family: @font-primary;
+  background: @brand-background;
+
+  .main,
+  & [role=main] {
+    background: @brand-background;
+
+    & .secondary {
+      padding-right: 0;
+    }
+  }
+
+  & [role=main] {
+    min-height: auto;
+    padding: 0;
+  }
+}
+
+.masthead {
+  .debug {
+    top: 0;
+    background: transparent;
+  }
+}
+
+.masthead {
+  background: @brand-primary;
+}
+
+@media (min-width: 700px) {
+  .homepage .hero {
+    min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-size: cover;
+  }
+}
+
+@media (min-width: 700px) {
+  .homepage .module-feeds {
+    background: @white;
+  }
+}
+
+.homepage [role=main] {
+  padding: 0;
+}
+
+h2 {
+  font-size: @font-size-30;
+  font-weight: @font-weight-300;
+}
+
+h1 {
+  font-size: @font-size-35;
+  font-weight: @font-weight-300;
+}
+
+p {
+  font-size: @font-size-16;
+}
+
+.welcome {
+  background: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+  padding: 10px;
+  color: @white;
+  margin-top: 40px;
+  font-size: @font-size-15;
+}
+
+.fa-home {
+  color: @black;
+}
+
+.module-heading {
+  background: @brand-primary;
+  color: @white;
+}
+
+.group-name a:hover {
+  color: @brand-quaternary;
+}
+
+.wrapper {
+  border: none;
+  box-shadow: none;
+}
+
+.stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  margin: 1.5rem 0;
+  height: 100px;
+  width: 100%;
+}
+
+.stats-row {
+  padding: 6rem;
+}
+
+.search-row {
+  padding-top: 35rem;
+  padding-left: 10rem;
+  width: 100%;
+}
+
+.stats-panel {
+  font-size: @font-size-30;
+  font-weight: @font-weight-300;
+  color: @text-dark;
+}
+
+.search-form {
+  border: none;
+}
+
+a {
+  color: @brand-quaternary;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.media-heading {
+  font-weight: @font-weight-300;
+  text-align-last: center;
+  color: @brand-quaternary;
+  display: inline-block;
+  margin-top: 2rem;
+}
+
+.card-title {
+  font-weight: @font-weight-300;
+  font-size: @font-size-20;
+}
+
+.card-text {
+  font-size: @font-size-16;
+}
+
+.fa-home {
+  color: @brand-quaternary;
+}
+
+.col-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rounded-img {
+  border-radius: 50%;
+}
+
+@media only screen and (min-width: 500px) and (max-width: 1155px) {
+  .col-centered {
+    display: block;
+  }
+}
