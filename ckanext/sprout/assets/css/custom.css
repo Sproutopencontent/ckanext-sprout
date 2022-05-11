@@ -144,6 +144,9 @@ a:hover {
     display: block;
   }
 }
+.form-actions {
+  overflow-y: hidden;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
@@ -197,8 +200,8 @@ a:hover {
 }
 .sprout-logo {
   background: #FFFFFF;
-  width: 380px;
-  height: 150px;
+  max-width: 380px;
+  max-height: 150px;
   background-repeat: no-repeat;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
