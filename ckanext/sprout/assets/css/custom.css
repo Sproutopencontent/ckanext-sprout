@@ -144,6 +144,15 @@ a:hover {
     display: block;
   }
 }
+.dataset-heading {
+  font-size: 20px;
+  font-weight: 500;
+}
+.dataset-org {
+  font-size: 16px;
+  margin-top: 0;
+  font-weight: 400;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
