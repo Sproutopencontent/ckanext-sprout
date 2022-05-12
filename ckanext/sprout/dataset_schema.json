@@ -54,6 +54,11 @@
             "label": "License",
             "form_snippet": "license.html",
             "help_text": "License definitions and additional information can be found at http://opendefinition.org/"
+        },
+        {
+            "field_name": "version",
+            "label": "Version",
+            "preset": "versions"
         }
     ],
     "resource_fields": [
