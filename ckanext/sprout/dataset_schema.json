@@ -16,7 +16,7 @@
             "preset": "dataset_slug"
         },
         {
-            "field_name": "description",
+            "field_name": "notes",
             "label": "Description",
             "form_snippet": "markdown.html",
             "form_placeholder": "eg. Some useful notes about the data"
