@@ -1,0 +1,10 @@
+{% ckan_extends %}
+
+{% set organization = package.organization.name %}
+
+    {% block heading %}
+    <h2 class="dataset-heading">
+     {{ super() }}
+      <h2 class="dataset-org text-capitalize">{{ organization }}</h2>
+    </h2>
+    {% endblock %}
