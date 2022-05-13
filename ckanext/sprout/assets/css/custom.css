@@ -177,6 +177,12 @@ a:hover {
   color: #1d6919;
   text-decoration: none;
 }
+@media only screen and (min-width: 300px) and (max-width: 767px) {
+  .lang-container {
+    display: inline-block;
+    width: 100%;
+  }
+}
 .navbar {
   min-height: 20px;
   padding: 0;
@@ -221,6 +227,12 @@ a:hover {
   color: #FFFFFF;
   background-color: #1d6919;
 }
+@media (max-width: 767px) {
+  .sprout-logo {
+    display: inline-block;
+    width: 100%;
+  }
+}
 .btn-primary {
   color: #FFFFFF;
   background-color: #1d6919;
@@ -235,6 +247,13 @@ a:hover {
 }
 .btn-success {
   font-weight: 400;
+}
+@media (max-width: 767px) {
+  .toolbar .breadcrumb a {
+    color: #000000;
+    text-shadow: none;
+    font-size: 14px;
+  }
 }
 @font-face {
   font-family: "Open Sans";
