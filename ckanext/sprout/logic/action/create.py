@@ -1,4 +1,3 @@
-from attr import has
 from ckan.authz import auth_is_loggedin_user
 from ckan import logic
 from ckan.plugins import toolkit
@@ -19,9 +18,10 @@ def answer_questions(context, data_dict):
     if not auth_is_loggedin_user():
         raise logic.NotAuthorized
     user_id = context['auth_user_obj'].id
+    user_email = context['auth_user_obj'].email
 
     # Check if the resource_id is valid( if the resource exists)
-    toolkit.get_action('resource_show')(context,{'id': resource_id})
+    toolkit.get_action('resource_show')(context, {'id': resource_id})
 
     # Check if the user has already answered the questions for this resource
     has_answered = toolkit.get_action('get_user_and_resource_qa')(
@@ -29,7 +29,6 @@ def answer_questions(context, data_dict):
     if has_answered:
         raise logic.ValidationError(
             _(f"User '{user_id}' has already answered the questions on resource '{resource_id}'"))
-
 
     # Check if the questions submitted are the defined questions
     questions = data_dict['data']
@@ -45,6 +44,7 @@ def answer_questions(context, data_dict):
     ques_answ = db.Questions()
     ques_answ.user_id = user_id
     ques_answ.resource_id = resource_id
+    ques_answ.user_email = user_email
     ques_answ.questions_answers = data_dict['data']
     # Save it to the db
     session.add(ques_answ)

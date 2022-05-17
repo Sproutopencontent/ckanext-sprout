@@ -23,6 +23,7 @@ def _dictize_answer_questions(data: Questions) -> dict:
     data_dict = {
         'id': data.id,
         'user_id': data.user_id,
+        'user_email': data.user_email,
         'resource_id': data.resource_id,
         'questions_answers': data.questions_answers,
         'created': created
