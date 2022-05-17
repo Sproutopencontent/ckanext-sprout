@@ -1,6 +1,6 @@
 import click
 
-from ckan import model
+from ckanext.sprout import model
 
 
 PROMPT_MESAGE = u'This will delete all of your questionnaire data!\
