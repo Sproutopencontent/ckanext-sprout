@@ -15,33 +15,11 @@
     var config = {
       apiKey: '0f9dc8150b03c87df7f2f96e24f78d1419ab5150',
       product: 'COMMUNITY',
-      optionalCookies: [
-        {
-          name: 'analytics',
-          label: 'Analytics',
-          description: '',
-          cookies: [],
-          onAccept: function () { },
-          onRevoke: function () { }
-        }, {
-          name: 'marketing',
-          label: 'Marketing',
-          description: '',
-          cookies: [],
-          onAccept: function () { },
-          onRevoke: function () { }
-        }, {
-          name: 'preferences',
-          label: 'Preferences',
-          description: '',
-          cookies: [],
-          onAccept: function () { },
-          onRevoke: function () { }
-        }
-      ],
-
       position: 'LEFT',
-      theme: 'LIGHT'
+      theme: 'LIGHT',
+      mode: 'GDPR',
+      logConsent: true,
+      initialState: 'open' //pro license
     };
 
     CookieControl.load(config);
