@@ -1,43 +1,40 @@
-{% set pages = h.get_featured_pages() %}
+{% set pages = h.get_featured_pages(3) %}
 {% set pages_total = pages|length %}
 {% set editor = h.get_wysiwyg_editor() %}
 
-<div class="container">
-  <div class="row py-5">
-    <h2>Get inspired with content stories</h2>
-    <hr>
+<div class="col-centered">
 
-    {% for page in pages %}
+  {% for page in pages %}
 
-      {% if type == 'blog' %}
-        {% set url = h.url_for('pages.blog_show', page=page.name) %}
-      {% else %}
-        {% set url = h.url_for('pages.show', page=page.name) %}
-      {% endif %}
+  {% if type == 'blog' %}
+  {% set url = h.url_for('pages.blog_show', page=page.name) %}
+  {% else %}
+  {% set url = h.url_for('pages.show', page=page.name) %}
+  {% endif %}
 
-      <div class="col col-lg-4">
-        <div class="card w-100">
-            <div class="card-body">
-              <a href="{{ url }}" class="card-title">{{ page.title }}</a>
-              {% if page.publish_date %}
-                <small class="date"> {{ h.render_datetime(page.publish_date) }} </small>
-              {% endif %}
-              <img class="card-img-top"  src="{{ page.image }}" alt="">
-              {% if page.content %}
-                {% if editor %}
-                <div>
-                  {{page.content|striptags|truncate(100, True, '...')}}
-                </div>
-                {% else %}
-                  {{ h.markdown_extract(page.content) }}
-                {% endif %}
-              {% else %}
-                <p class="empty">{{ _('This page currently has no content') }}</p>
-              {% endif %}
-            </div>
+  <div class="col col-xs-4">
+    <div class="card w-100">
+      <div class="card-body">
+        <img class="card-img-top story-img" src="{{ page.image }}" alt="">
+        <a href="{{ url }}" class="card-title">{{ page.title }}</a>
+        {% if page.publish_date %}
+        <small class="date"> {{ h.render_datetime(page.publish_date) }} </small>
+        {% endif %}
+        <!-- <img class="card-img-top story-img" src="{{ page.image }}" alt=""> -->
+        {% if page.content %}
+        {% if editor %}
+        <div>
+          {{page.content|striptags|truncate(100, True, '...')}}
         </div>
+        {% else %}
+        {{ h.markdown_extract(page.content) }}
+        {% endif %}
+        {% else %}
+        <p class="empty">{{ _('This page currently has no content') }}</p>
+        {% endif %}
       </div>
-
-    {% endfor %}
+    </div>
   </div>
+
+  {% endfor %}
 </div>

@@ -156,6 +156,9 @@ a:hover {
   margin-top: 0;
   font-weight: 400;
 }
+.story-img {
+  max-height: 150px;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
