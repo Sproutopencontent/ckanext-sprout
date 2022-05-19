@@ -183,6 +183,9 @@ a:hover {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.table-bordered {
+  word-break: break-all;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
