@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block resource_list_inner %}
+    {{ super() }}
+    {% for resource in resources %}
+        {% snippet 'package/snippets/download_resource_questions.html', res=resource, num_resources=resources|length %}
+    {% endfor %}
+{% endblock %}

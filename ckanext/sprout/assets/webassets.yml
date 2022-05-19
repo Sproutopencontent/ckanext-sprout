@@ -12,3 +12,11 @@ sprout-style:
   output: ckanext-sprout/%(version)s-custom.css
   contents:
     - css/custom.css
+
+answer_question:
+  output: ckanext-sprout/%(version)s-sprout_answer_question.js
+  contents:
+    - js/sprout_answer_questions.js
+  extra:
+    preload:
+      - base/main

@@ -4,12 +4,13 @@ import ckan.plugins.toolkit as toolkit
 from ckanext.sprout.cli import get_commands
 from ckanext.sprout.logic.action import create
 from ckanext.sprout.logic.action import get
-
+from ckanext.sprout import helpers
 
 class SproutPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IClick)
+    plugins.implements(plugins.ITemplateHelpers)
 
     # IConfigurer
     def update_config(self, config_):
@@ -27,3 +28,9 @@ class SproutPlugin(plugins.SingletonPlugin):
     # IClick
     def get_commands(self):
         return get_commands()
+
+    # ITemplateHelpers
+    def get_helpers(self):
+        return {
+            'sprout_get_questions_and_types': helpers.get_questions_and_types
+        }
