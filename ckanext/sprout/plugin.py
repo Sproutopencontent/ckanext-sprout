@@ -1,5 +1,6 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from ckanext.sprout.sprout_blueprint import blueprint
 
 from ckanext.sprout import helpers as h
 
@@ -10,6 +11,7 @@ class SproutPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(IPagesSchema)
+    plugins.implements(plugins.IBlueprint)
 
     # IConfigurer
 
@@ -35,3 +37,8 @@ class SproutPlugin(plugins.SingletonPlugin):
             'get_featured_pages':
                 h.get_featured_pages
         }
+
+    # IBlueprint
+
+    def get_blueprint(self):
+        return [blueprint]
