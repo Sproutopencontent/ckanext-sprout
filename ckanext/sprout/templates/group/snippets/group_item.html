@@ -1,0 +1,20 @@
+{% ckan_extends %}
+{% set type = group.type or 'group' %}
+{% set url = h.url_for(type ~ '.read', id=group.name) %}
+
+{{ super() }}
+
+{% block image %}
+<img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" height="150px"
+    alt="{{ group.name }}" class="media-image image-fit">
+{% endblock %}
+{% block title %}
+<h2 class="media-heading">{{ group.display_name|truncate(30, True, '...') }}</h2>
+{% endblock %}
+{% block description %}
+{% if group.description %}
+<p class="media-description">{{ h.markdown_extract(group.description|truncate(100, True, '...'), extract_length=80) }}
+</p>
+{% endif %}
+
+{% endblock %}
