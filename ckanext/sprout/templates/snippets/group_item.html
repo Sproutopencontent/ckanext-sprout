@@ -17,7 +17,7 @@
       {% endblock %}
       {% block group_item_header_title %}
       <h3 class="media-heading mt-5"><a href="{{ h.url_for(controller='group', action='read', id=group.name) }}">{{
-          group.title or group.name }}</a></h3>
+          group.title|truncate(40, True, '...') or group.name|truncate(30, True, '...') }}</a></h3>
       {% endblock %}
     </div>
   </header>

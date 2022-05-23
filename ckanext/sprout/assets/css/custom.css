@@ -313,6 +313,15 @@ a:hover {
     font-size: 14px;
   }
 }
+.media-item {
+  height: 340px;
+}
+.media-description {
+  text-align: justify;
+}
+.media-heading {
+  word-break: break-all !important;
+}
 @font-face {
   font-family: "Open Sans";
   src: url('/base/fonts/OpenSans-Regular.woff2') format('woff2');
