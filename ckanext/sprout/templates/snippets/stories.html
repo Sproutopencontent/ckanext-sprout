@@ -1,47 +1,42 @@
-<div class="container">
-    <div class="row py-5">
-        <h2>Get inspired with content stories</h2>
-        <hr>
-        </hr>
-        <div class="col col-lg-4">
-            <div class="card w-100">
-                <img class="card-img-top"
-                    src=""
-                    alt="">
-                <div class="card-body">
-                    <a href="#" class="card-title">Card title</a>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                </div>
-            </div>
-        </div>
+{% set pages = h.get_featured_pages(3) %}
+{% set pages_total = pages|length %}
+{% set editor = h.get_wysiwyg_editor() %}
 
-        <div class="col col-lg-4">
-            <div class="card w-100">
-                <img class="card-img-top" src="" alt="">
-                <div class="card-body">
-                    <a href="#" class="card-title">Card title</a>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                </div>
-            </div>
-        </div>
+<div class="centered">
 
-        <div class="col col-lg-4">
-            <div class="card w-100">
-                <img class="card-img-top" src="" alt="">
-                <div class="card-body">
-                    <a href="#" class="card-title">Card title</a>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                        Some quick example text to build on the card title and make up the bulk of the card's content.
-                    </p>
-                </div>
-            </div>
+  {% for page in pages %}
+
+  {% if type == 'blog' %}
+  {% set url = h.url_for('pages.blog_show', page=page.name) %}
+  {% else %}
+  {% set url = h.url_for('pages.show', page=page.name) %}
+  {% endif %}
+
+  <div class="col col-xs-4">
+    <div class="card-group centered-stories">
+      <div class="card">
+        <img class="card-img-top" width="350px" height="200px"
+          src="{{ page.image or h.url_for_static('/base/images/no-picture.jpg')}}" alt="">
+        <div class="card-body">
+          <a href="{{ url }}" class="card-title">{{ page.title|truncate(70, True, '...') }}</a>
+          {% if page.content %}
+          {% if editor %}
+          <div class="card-text">
+            {{page.content|striptags|truncate(500, True, '...')}}
+          </div>
+          {% else %}
+          {{ h.markdown_extract(page.content) }}
+          {% endif %}
+          {% else %}
+          <p class="empty">{{ _('This page currently has no content') }}</p>
+          {% endif %}
+          {% if page.publish_date %}
+          <small class="date text-muted"> {{ h.render_datetime(page.publish_date) }} </small>
+          {% endif %}
         </div>
+      </div>
     </div>
+  </div>
+
+  {% endfor %}
 </div>

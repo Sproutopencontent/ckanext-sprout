@@ -4,10 +4,18 @@
 <div class="account-masthead">
   <div class="container">
     {% block header_account_container_content %} {{ super() }} {% endblock %}
-    <a href="/">
-        <img  class="sprout-logo" src="{{ h.url_for_static('/base/images/Sprout-Logo-final.jpg') }}" />
+    <a class="logo" href="{{ h.url_for('home.index') }}">
+      <img class="sprout-logo" src="{{ h.url_for_static_or_external(g.site_logo) }}"
+        alt="{{ g.site_title }}" title="{{ g.site_title }}" />
     </a>
   </div>
 </div>
 {% endblock %}
+{% block header_logo %}{% endblock %}
 {% block header_site_search %} {% endblock %}
+{% block header_site_navigation_tabs %}
+		{{ h.build_nav_main(
+		    ('dataset.search', _('Content')),
+
+		    ('home.about', _('About')) ) }}
+{% endblock %}

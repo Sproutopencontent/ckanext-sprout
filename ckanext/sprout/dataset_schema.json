@@ -33,10 +33,11 @@
         },
         {
             "field_name": "url",
-            "label": "Website",
+            "label": "Organization Website",
             "form_placeholder": "http://example.com",
             "display_property": "foaf:homepage",
-            "display_snippet": "link.html"
+            "display_snippet": "link.html",
+            "validators": "url_validator"
         },
         {
             "field_name": "contact_name",
