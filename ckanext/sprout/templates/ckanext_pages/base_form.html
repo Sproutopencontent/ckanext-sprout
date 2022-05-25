@@ -2,5 +2,10 @@
 
 {% set options = [{'value': True, 'text': _('Yes')}, {'value': False, 'text': _('No')}] %}
 {% block extra_pages_form %}
-    {{ form.select('featured', id='field-featured', label=_('Show in featured'), options=options, selected=data.featured) }}
+
+    {% if type == 'blog' %}
+
+      {{ form.select('featured', id='field-featured', label=_('Show in featured'), options=options, selected=data.featured) }}
+
+    {% endif %}
 {% endblock extra_pages_form %}
