@@ -20,3 +20,15 @@
 {% endblock %}
 {% block header_logo %}{% endblock %}
 {% block header_site_search %} {% endblock %}
+{% block header_site_navigation_tabs %}
+    {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
+      {{ h.build_nav_main(
+        ('dataset.search', _('Content')),
+        ('google_analytics.analytics_view', _('Analytics')),
+        ('home.about', _('About')) ) }}
+    {% else %}
+      {{ h.build_nav_main(
+        ('dataset.search', _('Content')),
+        ('home.about', _('About')) ) }}
+    {% endif %}
+{% endblock %}
