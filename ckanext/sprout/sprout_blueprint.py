@@ -11,11 +11,6 @@ blueprint = flask.Blueprint(
 )
 
 
-@blueprint.before_request
-def before_request():
-    pass
-
-
 def download_to(package_type, id, resource_id, filename=None):
     """
     Provides a direct download by either redirecting the user to the url

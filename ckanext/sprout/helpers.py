@@ -5,7 +5,7 @@ import ckan.lib.uploader as uploader
 
 
 def get_featured_pages(limit=3):
-    data_dict = {'org_id': None, 'page_type': 'page'}
+    data_dict = {'org_id': None, 'page_type': 'blog'}
     context = {'model': model, 'user': c.user,
                'auth_user_obj': c.userobj}
     pages = p.toolkit.get_action('ckanext_pages_list')(context, data_dict)

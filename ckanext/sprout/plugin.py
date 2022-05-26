@@ -25,7 +25,7 @@ class SproutPlugin(plugins.SingletonPlugin):
     def update_pages_schema(self, schema):
         schema.update({
             'featured': [
-                toolkit.get_validator('not_empty'),
+                toolkit.get_validator('ignore_missing'),
                 toolkit.get_validator('boolean_validator')]
         })
         return schema
