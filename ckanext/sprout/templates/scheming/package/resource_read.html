@@ -1,0 +1,8 @@
+{% ckan_extends %}
+{% block resource_fields %}
+  {{ super() }}
+    <tr>
+      <th scope="row">{{ _('Size') }}</th>
+      <td>{{ h.resource_display_size(res) }}</td>
+    </tr>
+{% endblock %}
