@@ -106,8 +106,8 @@ p {
 }
 
 .search-row {
-  padding-top: 5rem;
-  padding-left: 170rem;
+  padding-top: 8rem;
+  float: left;
   color: @black;
 }
 
@@ -230,3 +230,26 @@ a:hover {
     width: fit-content;
   }
 }
+
+@media (min-width: 500px) and (max-width: 1516px) {
+  .search-row {
+    float: none;
+    padding-left: 83%;
+  }
+
+  .search-form .search-input.search-giant input {
+    font-size: @font-size-12;
+  }
+}
+
+@media (max-width: 768px) {
+  .search-row {padding-top: 0%;
+    padding-left: 60%;
+    float: none;
+  }
+
+  .search-form .search-input.search-giant input {
+    font-size: @font-size-12;
+  }
+}
+
