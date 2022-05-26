@@ -13,7 +13,9 @@
     
   </div>
   <div class="search-row">
-    {% snippet 'home/snippets/search.html' %}
+    {% if g.controller == 'home' %}
+      {% snippet 'home/snippets/search.html' %}
+    {% endif %}
   </div>
 </div>
 
