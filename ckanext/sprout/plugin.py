@@ -35,7 +35,11 @@ class SproutPlugin(plugins.SingletonPlugin):
     def get_helpers(self):
         return {
             'get_featured_pages':
-                h.get_featured_pages
+                h.get_featured_pages,
+            'resource_display_size':
+                h.resource_display_size,
+            'resource_max_size':
+                h.resource_max_size
         }
 
     # IBlueprint
