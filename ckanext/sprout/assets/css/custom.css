@@ -89,9 +89,15 @@ p {
   padding: 6rem;
 }
 .search-row {
-  padding-top: 35rem;
-  padding-left: 10rem;
-  width: 100%;
+  padding-top: 8rem;
+  float: left;
+  color: #000000;
+}
+.head {
+  padding-left: 22%;
+}
+.fa-search:before {
+  color: #0a9900;
 }
 .stats-panel {
   font-size: 30px;
@@ -214,6 +220,25 @@ a:hover {
     width: fit-content;
   }
 }
+@media (min-width: 500px) and (max-width: 1516px) {
+  .search-row {
+    float: none;
+    padding-left: 83%;
+  }
+  .search-form .search-input.search-giant input {
+    font-size: 12px;
+  }
+}
+@media (max-width: 768px) {
+  .search-row {
+    padding-top: 0%;
+    padding-left: 60%;
+    float: none;
+  }
+  .search-form .search-input.search-giant input {
+    font-size: 12px;
+  }
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
@@ -270,6 +295,7 @@ a:hover {
 .account-masthead .account {
   margin-right: 20px;
   background: #FFFFFF !important;
+  padding-left: 53rem;
 }
 .sprout-logo {
   background: #FFFFFF;
@@ -289,6 +315,11 @@ a:hover {
   .sprout-logo {
     display: inline-block;
     width: 100%;
+  }
+}
+@media (max-width: 1200px) {
+  .account-masthead .account {
+    padding-left: 0;
   }
 }
 .btn-primary {
