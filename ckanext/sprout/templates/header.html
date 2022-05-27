@@ -2,20 +2,23 @@
 
 {%block header_account %}
 <div class="account-masthead">
-  <div class="container col-sm-10 head">
-    <div class="col">
-    {% block header_account_container_content %} {{ super() }} {% endblock %}
-    <a class="logo" href="{{ h.url_for('home.index') }}">
-      <img class="sprout-logo" src="{{ h.url_for_static_or_external(g.site_logo) }}"
-        alt="{{ g.site_title }}" title="{{ g.site_title }}" />
-    </a>
+  <div class="container">
+    <div>
+      {% block header_account_container_content %} {{ super() }} {% endblock %}
     </div>
-    
-  </div>
-  <div class="search-row">
-    {% if g.controller == 'home' %}
-      {% snippet 'home/snippets/search.html' %}
-    {% endif %}
+    <div class="col-sm-6">
+      <a class="logo" href="{{ h.url_for('home.index') }}">
+        <img class="sprout-logo" src="{{ h.url_for_static_or_external(g.site_logo) }}" alt="{{ g.site_title }}"
+          title="{{ g.site_title }}" />
+      </a>
+    </div>
+    <div class="col-sm-6">
+      <div class="search-bar">
+        {% if g.controller == 'home' %}
+        {% snippet 'home/snippets/search.html' %}
+        {% endif %}
+      </div>
+    </div>
   </div>
 </div>
 
@@ -23,16 +26,16 @@
 {% block header_logo %}{% endblock %}
 {% block header_site_search %} {% endblock %}
 {% block header_site_navigation_tabs %}
-    {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
-      {{ h.build_nav_main(
-        ('dataset.search', _('Content')),
-        ('organization.index', _('Content Organizations')),
-        ('group.index', _('Content Groups')),
-        ('google_analytics.analytics_view', _('Analytics')),
-        ('home.about', _('About')) ) }}
-    {% else %}
-      {{ h.build_nav_main(
-        ('dataset.search', _('Content')),
-        ('home.about', _('About')) ) }}
-    {% endif %}
+{% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
+{{ h.build_nav_main(
+('dataset.search', _('Content')),
+('organization.index', _('Content Organizations')),
+('group.index', _('Content Groups')),
+('google_analytics.analytics_view', _('Analytics')),
+('home.about', _('About')) ) }}
+{% else %}
+{{ h.build_nav_main(
+('dataset.search', _('Content')),
+('home.about', _('About')) ) }}
+{% endif %}
 {% endblock %}
