@@ -295,7 +295,6 @@ a:hover {
 .account-masthead .account {
   margin-right: 20px;
   background: #FFFFFF !important;
-  padding-left: 53rem;
 }
 .sprout-logo {
   background: #FFFFFF;
@@ -321,6 +320,14 @@ a:hover {
   .account-masthead .account {
     padding-left: 0;
   }
+}
+.account-masthead .account {
+  padding-left: 0;
+}
+.search-bar {
+  padding-left: 15%;
+  padding-top: 4%;
+  color: #000000;
 }
 .btn-primary {
   color: #FFFFFF;
