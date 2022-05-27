@@ -20,5 +20,4 @@ def resource_display_size(resource_dict_size):
 
 
 def resource_max_size():
-    max_size_int = uploader.get_max_resource_size()
-    return ' Maximum allowed size of the file to upload is {} MB.'.format(str(max_size_int))
+    return uploader.get_max_resource_size()
