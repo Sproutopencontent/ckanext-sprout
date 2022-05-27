@@ -17,6 +17,8 @@
     {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
       {{ h.build_nav_main(
         ('dataset.search', _('Content')),
+        ('organization.index', _('Content Organizations')),
+        ('group.index', _('Content Groups')),
         ('google_analytics.analytics_view', _('Analytics')),
         ('home.about', _('About')) ) }}
     {% else %}
