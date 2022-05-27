@@ -3,6 +3,6 @@
   {{ super() }}
     <tr>
       <th scope="row">{{ _('Size') }}</th>
-      <td>{{ h.resource_display_size(res) }}</td>
+      <td>{{ h.resource_display_size(res)|filesizeformat }}</td>
     </tr>
 {% endblock %}

@@ -15,7 +15,7 @@ def get_featured_pages(limit=3):
 
 def resource_display_size(resource_dict_size):
     resource_size = resource_dict_size.get('size', None)
-    resource_size_string = '0 bytes' if resource_size is None else '{} bytes'.format(str(resource_size))
+    resource_size_string = '0' if resource_size is None else '{}'.format(resource_size)
     return resource_size_string
 
 
