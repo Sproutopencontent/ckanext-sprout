@@ -9,6 +9,33 @@
 {% endblock -%}
 
 {% block footer %}
+<script src="https://cc.cdn.civiccomputing.com/9/cookieControl-9.x.min.js"></script>
+<script>
+  var config = {
+    apiKey: '75728cc9879b71c4c08af547159e93a3217a4543',
+    product: 'PRO',
+    consentCookieExpiry: 0,
+    position: 'LEFT',
+    theme: 'LIGHT',
+    mode: 'gdpr',
+    logConsent: true,
+    initialState: 'closed',
+    notifyOnce: true,
+    layout: 'popup',
+    acceptBehaviour: 'all',
+    text: {
+      title: 'Cookie Control',
+      intro: 'Some cookies on this site are essential, and the site won`t work as expected without them. These cookies are set when you submit a form, login or interact with the site by doing something that goes beyond clicking on simple links. We also use some non-essential cookies to anonymously track visitors or enhance your experience of the site. If you`re not happy with this, we won`t set these cookies but some nice features of the site may be unavailable.'
+    },
+    branding: {
+      fontFamily: 'Open Sans, sans-serif',
+      acceptText: '#1d6919',
+      removeAbout: true
+    }
+  };
+
+  CookieControl.load(config);
+</script>
 <footer>
   <div class="container-fluid">
     <div class="row">
@@ -19,3 +46,4 @@
   </div>
 </footer>
 {% endblock %}
+
