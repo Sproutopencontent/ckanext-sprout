@@ -28,14 +28,20 @@
 {% block header_site_navigation_tabs %}
 {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
 {{ h.build_nav_main(
+('home.index', _('Home')),
+('home.about', _('About Sprout')),
 ('dataset.search', _('Content')),
 ('organization.index', _('Content Organizations')),
 ('group.index', _('Content Groups')),
 ('google_analytics.analytics_view', _('Analytics')),
-('home.about', _('About')) ) }}
+('pages.blog_index', _('Stories'))
+) }}
 {% else %}
 {{ h.build_nav_main(
+('home.index', _('Home')),
+('home.about', _('About Sprout')),
 ('dataset.search', _('Content')),
-('home.about', _('About')) ) }}
+('pages.blog_index', _('Stories'))
+ ) }}
 {% endif %}
 {% endblock %}
