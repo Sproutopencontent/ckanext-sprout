@@ -260,12 +260,13 @@ a:hover {
 .footer-links:visited {
   background-color: #1d6919;
   text-align: center;
+  padding: 10px 15px;
   display: inline-block;
   text-decoration: none;
 }
 .footer-links:hover,
 .footer-links:active {
-  color: #1d6919;
+  color: #0a9900;
   text-decoration: none;
 }
 @media only screen and (min-width: 300px) and (max-width: 767px) {
