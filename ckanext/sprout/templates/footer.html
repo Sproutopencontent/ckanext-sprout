@@ -2,7 +2,7 @@
     <div class="container">
       {% block footer_content %}
       <div class="row">
-        <div class="pull-left">
+        <div class="col-sm-8">
           {% block footer_nav %}
             <ul class="list-unstyled">
               {% block footer_links %}
@@ -11,7 +11,7 @@
             </ul>
           {% endblock %}
         </div>
-        <div class="pull-right">
+        <div class="col-sm-4">
           {% block footer_attribution %}
           <ul class="list-unstyled">
             <li><a class="footer-links" href="{{ h.url_for('contact.form') }}">{{ _('Contact') }}</a></li>
