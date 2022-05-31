@@ -28,18 +28,34 @@ body {
   background: @brand-primary;
 }
 
-@media (min-width: 200px) {
+@media (min-width: 756px) {
   .homepage .hero {
     height: auto;
     min-height: 700px;
-    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60 (copy).jpg");
     background-size: cover;
+    background-repeat:no-repeat;
   }
 
   .homepage .module-feeds {
     background: @white;
   }
 }
+
+@media (max-width: 756px) {
+  .homepage .hero {
+    height: auto;
+    // min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60 (copy).jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+  }
+
+  .homepage .module-feeds {
+    background: @white;
+  }
+}
+
 
 .homepage [role=main] {
   padding: 0;
