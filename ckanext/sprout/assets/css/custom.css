@@ -23,14 +23,13 @@ body [role=main] {
 .masthead {
   background: #1d6919;
 }
-@media (min-width: 700px) {
+@media (min-width: 200px) {
   .homepage .hero {
+    height: auto;
     min-height: 700px;
     background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
     background-size: cover;
   }
-}
-@media (min-width: 700px) {
   .homepage .module-feeds {
     background: #FFFFFF;
   }
