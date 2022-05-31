@@ -4,7 +4,16 @@
 <div class="account-masthead">
   <div class="container">
     <div>
-      {% block header_account_container_content %} {{ super() }} {% endblock %}
+      {% block header_account_container_content %} {{ super() }}
+      {% block header_account_log_out_link %}
+      <li>
+        <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
+          <span>{{ 'Log out' }}</span>
+          <span class="text">{{ _('Log out') }}</span>
+        </a>
+      </li>
+      {% endblock %}
+      {% endblock %}
     </div>
     <div class="col-sm-6">
       <a class="logo" href="{{ h.url_for('home.index') }}">
@@ -15,7 +24,7 @@
     <div class="col-sm-6">
       <div class="search-bar">
         {% if g.controller != 'dataset' %}
-          {% snippet 'home/snippets/search.html' %}
+        {% snippet 'home/snippets/search.html' %}
         {% endif %}
       </div>
     </div>
@@ -42,6 +51,6 @@
 ('home.about', _('About Sprout')),
 ('dataset.search', _('Content')),
 ('pages.blog_index', _('Stories'))
- ) }}
+) }}
 {% endif %}
 {% endblock %}
