@@ -39,7 +39,9 @@ class SproutPlugin(plugins.SingletonPlugin):
             'resource_display_size':
                 h.resource_display_size,
             'resource_max_size':
-                h.resource_max_size
+                h.resource_max_size,
+            'sprout_link_active':
+                h.link_active
         }
 
     # IBlueprint

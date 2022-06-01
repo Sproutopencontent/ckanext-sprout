@@ -92,22 +92,33 @@
 {% block header_logo %}{% endblock %}
 {% block header_site_search %} {% endblock %}
 {% block header_site_navigation_tabs %}
+
+<li class="{{ h.sprout_link_active('home', 'index') }}"><a href="{{ h.url_for('home.index') }}">{{ _('Home') }}</a></li>
+<li class="{{ h.sprout_link_active('home', 'about') }}"><a href="{{ h.url_for('home.about') }}">{{ _('About Sprout') }}</a></li>
+<li>
+  <a id="contentMenu" data-toggle="dropdown">
+    {{ _('Content') }}
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu" aria-labelledby="contentMenu">
+    <li class="{{ h.sprout_link_active('dataset', 'search') }} sprout-dropdown-item" role="presentation">
+      <a role="menuitem" tabindex="-1" href="{{ h.url_for('dataset.search') }}">{{ _('Content') }}</a>
+    </li>
+    <li class="{{ h.sprout_link_active('organization', 'index') }} sprout-dropdown-item" role="presentation">
+      <a role="menuitem" tabindex="-1" href="{{ h.url_for('organization.index') }}">{{ _('Content Organizations') }}</a>
+    </li>
+    <li class="{{ h.sprout_link_active('group', 'index') }} sprout-dropdown-item" role="presentation">
+      <a role="menuitem" tabindex="-1" href="{{ h.url_for('group.index') }}">{{ _('Content Groups') }}</a>
+    </li>
+  </ul>
+</li>
+
 {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
-{{ h.build_nav_main(
-('home.index', _('Home')),
-('home.about', _('About Sprout')),
-('dataset.search', _('Content')),
-('organization.index', _('Content Organizations')),
-('group.index', _('Content Groups')),
-('google_analytics.analytics_view', _('Analytics')),
-('pages.blog_index', _('Stories'))
-) }}
-{% else %}
-{{ h.build_nav_main(
-('home.index', _('Home')),
-('home.about', _('About Sprout')),
-('dataset.search', _('Content')),
-('pages.blog_index', _('Stories'))
- ) }}
+  <li class="{{ h.sprout_link_active('google_analytics', 'analytics_view') }}" ><a href="{{ h.url_for('google_analytics.analytics_view') }}">{{ _('Analytics') }}</a></li>
 {% endif %}
+
+{% if 'pages' in c.plugins %}
+  {{ h.build_nav_main(('pages.blog_index', _('Stories')) ) }}
+{% endif %}
+
 {% endblock %}

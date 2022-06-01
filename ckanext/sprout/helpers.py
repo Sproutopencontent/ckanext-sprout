@@ -2,6 +2,7 @@ from ckan import model
 import ckan.plugins as p
 from ckan.common import c
 import ckan.lib.uploader as uploader
+from ckan.lib.helpers import _link_active
 
 
 def get_featured_pages(limit=3):
@@ -21,3 +22,10 @@ def resource_display_size(resource_dict_size):
 
 def resource_max_size():
     return uploader.get_max_resource_size()
+
+
+def link_active(controller, action):
+    if _link_active(dict(controller=controller, action=action)):
+        return 'active'
+
+

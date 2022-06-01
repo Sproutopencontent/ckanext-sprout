@@ -258,6 +258,9 @@ a:hover {
     font-size: 12px;
   }
 }
+.sprout-dropdown-item {
+  overflow-y: visible !important;
+}
 .footer {
   padding: 4rem 0;
   background: #1d6919;
