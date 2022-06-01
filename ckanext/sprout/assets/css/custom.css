@@ -333,6 +333,9 @@ a:hover {
     display: inline-block;
     width: 100%;
   }
+  .account-masthead .account {
+    float: none;
+  }
 }
 @media (max-width: 1200px) {
   .account-masthead .account {
