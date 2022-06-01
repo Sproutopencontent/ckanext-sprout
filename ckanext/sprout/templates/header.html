@@ -81,7 +81,7 @@
     <div class="col-sm-6">
       <div class="search-bar">
         {% if g.controller != 'dataset' %}
-        {% snippet 'home/snippets/search.html' %}
+          {% snippet 'home/snippets/search.html' %}
         {% endif %}
       </div>
     </div>
@@ -108,6 +108,6 @@
 ('home.about', _('About Sprout')),
 ('dataset.search', _('Content')),
 ('pages.blog_index', _('Stories'))
-) }}
+ ) }}
 {% endif %}
 {% endblock %}
