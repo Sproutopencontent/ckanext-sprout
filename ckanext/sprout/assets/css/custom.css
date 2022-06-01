@@ -23,14 +23,25 @@ body [role=main] {
 .masthead {
   background: #1d6919;
 }
-@media (min-width: 700px) {
+@media (min-width: 756px) {
   .homepage .hero {
+    height: auto;
     min-height: 700px;
-    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
+  }
+  .homepage .module-feeds {
+    background: #FFFFFF;
   }
 }
-@media (min-width: 700px) {
+@media (max-width: 756px) {
+  .homepage .hero {
+    height: auto;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
   .homepage .module-feeds {
     background: #FFFFFF;
   }
@@ -170,9 +181,12 @@ a:hover {
 .rounded-img {
   border-radius: 50%;
 }
-@media only screen and (min-width: 500px) and (max-width: 1155px) {
+@media only screen and (min-width: 200px) and (max-width: 1155px) {
   .col-centered {
     display: block;
+  }
+  .stats {
+    display: contents;
   }
 }
 .form-actions {
@@ -218,9 +232,6 @@ a:hover {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .centered-stories {
     width: -webkit-fit-content;
@@ -258,8 +269,7 @@ a:hover {
 }
 .footer-links:link,
 .footer-links:visited {
-  text-align: center;
-  padding: 10px 15px;
+  padding: 10px 0px;
   display: inline-block;
   text-decoration: none;
 }

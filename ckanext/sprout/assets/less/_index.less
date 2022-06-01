@@ -28,19 +28,34 @@ body {
   background: @brand-primary;
 }
 
-@media (min-width: 700px) {
+@media (min-width: 756px) {
   .homepage .hero {
+    height: auto;
     min-height: 700px;
-    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60.jpg");
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
     background-size: cover;
+    background-repeat:no-repeat;
   }
-}
 
-@media (min-width: 700px) {
   .homepage .module-feeds {
     background: @white;
   }
 }
+
+@media (max-width: 756px) {
+  .homepage .hero {
+    height: auto;
+    // min-height: 700px;
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
+    background-size: cover;
+    background-repeat:no-repeat;
+  }
+
+  .homepage .module-feeds {
+    background: @white;
+  }
+}
+
 
 .homepage [role=main] {
   padding: 0;
@@ -182,9 +197,13 @@ a:hover {
   border-radius: 50%;
 }
 
-@media only screen and (min-width: 500px) and (max-width: 1155px) {
+@media only screen and (min-width: 200px) and (max-width: 1155px) {
   .col-centered {
     display: block;
+  }
+
+  .stats {
+    display: contents;
   }
 }
 
@@ -223,9 +242,8 @@ a:hover {
 
 @media (max-width: 767px) {
   .centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+      display: flex;
+      flex-direction: column;
   }
 
   .centered-stories {
@@ -245,7 +263,8 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  .search-row {padding-top: 0%;
+  .search-row {
+    padding-top: 0%;
     padding-left: 60%;
     float: none;
   }
