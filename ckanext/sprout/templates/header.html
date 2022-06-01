@@ -101,13 +101,13 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu" aria-labelledby="contentMenu">
-    <li class="{{ h.sprout_link_active('dataset', 'search') }} sprout-dropdown-item" role="presentation">
+    <li class="{{ h.sprout_link_active('dataset', 'search') }}" role="presentation">
       <a role="menuitem" tabindex="-1" href="{{ h.url_for('dataset.search') }}">{{ _('Content') }}</a>
     </li>
-    <li class="{{ h.sprout_link_active('organization', 'index') }} sprout-dropdown-item" role="presentation">
+    <li class="{{ h.sprout_link_active('organization', 'index') }}" role="presentation">
       <a role="menuitem" tabindex="-1" href="{{ h.url_for('organization.index') }}">{{ _('Content Organizations') }}</a>
     </li>
-    <li class="{{ h.sprout_link_active('group', 'index') }} sprout-dropdown-item" role="presentation">
+    <li class="{{ h.sprout_link_active('group', 'index') }}" role="presentation">
       <a role="menuitem" tabindex="-1" href="{{ h.url_for('group.index') }}">{{ _('Content Groups') }}</a>
     </li>
   </ul>
