@@ -27,7 +27,7 @@ body [role=main] {
   .homepage .hero {
     height: auto;
     min-height: 700px;
-    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60 (copy).jpg");
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
@@ -38,7 +38,7 @@ body [role=main] {
 @media (max-width: 756px) {
   .homepage .hero {
     height: auto;
-    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects_low-res-60 (copy).jpg");
+    background-image: url("../../../base/images/AgriFin_Reelmedia_Film_Final_Selects.jpg");
     background-size: cover;
     background-repeat: no-repeat;
   }
