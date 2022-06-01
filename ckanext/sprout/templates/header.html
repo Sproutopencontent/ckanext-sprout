@@ -114,7 +114,9 @@
 </li>
 
 {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
-  <li class="{{ h.sprout_link_active('google_analytics', 'analytics_view') }}" ><a href="{{ h.url_for('google_analytics.analytics_view') }}">{{ _('Analytics') }}</a></li>
+  <li class="{{ h.sprout_link_active('google_analytics', 'analytics_view') }}" >
+    <a href="{{ h.url_for('google_analytics.analytics_view') }}">{{ _('Analytics') }}</a>
+  </li>
 {% endif %}
 
 {% if 'pages' in c.plugins %}
