@@ -58,7 +58,7 @@
   }
 
   .account-masthead .account {
-   float: none;
+    float: none;
   }
 }
 
@@ -80,4 +80,35 @@
 
 .account-masthead .account ul li a.sub {
   font-weight: bold;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  background-color: @brand-primary;
+  font-size: @font-size-18;
+  color: @white;
+}
+
+@media (max-width: 765px) {
+  .masthead .nav li a {
+    width: 200px;
+  }
+
+  .dropdown-menu li a {
+    padding: 3px;
+  }
+}
+
+.navbar {
+  position: relative;
+  z-index: 999;
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #1d6919;
 }
