@@ -353,6 +353,31 @@ a:hover {
 .account-masthead .account ul li a.sub {
   font-weight: bold;
 }
+.dropdown-menu {
+  padding: 0;
+}
+.dropdown-menu li a {
+  background-color: #1d6919;
+  font-size: 18px;
+  color: #FFFFFF;
+}
+@media (max-width: 765px) {
+  .masthead .nav li a {
+    width: 200px;
+  }
+  .dropdown-menu li a {
+    padding: 3px;
+  }
+}
+.navbar {
+  position: relative;
+  z-index: 999;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #1d6919;
+}
 .btn-primary {
   color: #FFFFFF;
   background-color: #1d6919;
