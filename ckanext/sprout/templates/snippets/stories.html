@@ -6,11 +6,7 @@
 
   {% for page in pages %}
 
-  {% if type == 'blog' %}
   {% set url = h.url_for('pages.blog_show', page=page.name) %}
-  {% else %}
-  {% set url = h.url_for('pages.show', page=page.name) %}
-  {% endif %}
 
   <div class="col col-xs-4">
     <div class="card-group centered-stories">
