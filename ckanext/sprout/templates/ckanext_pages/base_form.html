@@ -52,12 +52,12 @@
 
 {% if type == 'blog' %}
   {% if not page %}
-    <h1>{{ _('Add Storie') }}</h1>
+    <h1>{{ _('Add Story') }}</h1>
   {% else %}
-    <h1>{{ _('Edit Storie') }}</h1>
+    <h1>{{ _('Edit Story') }}</h1>
   {% endif %}
   {% set url_placeholder = 'eg. my-blog-article' %}
-  {% set title_placeholder = _('eg. Storie Title') %}
+  {% set title_placeholder = _('eg. Story Title') %}
 {% else %}
   {% if not page %}
     <h1>{{ _('Add page') }}</h1>
