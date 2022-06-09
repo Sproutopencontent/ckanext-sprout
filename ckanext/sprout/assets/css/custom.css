@@ -135,8 +135,7 @@ a:hover {
       -ms-flex-align: center;
           align-items: center;
   font-weight: 300;
-  -moz-text-align-last: center;
-       text-align-last: center;
+  text-align: center;
   color: #0a9900;
   margin-top: 2rem;
 }
