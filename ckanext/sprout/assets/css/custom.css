@@ -152,7 +152,6 @@ a:hover {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  word-break: break-all !important;
   padding-top: 10px;
   padding-bottom: 10px;
   overflow: hidden;
@@ -408,9 +407,6 @@ a:hover {
 }
 .media-description {
   text-align: center;
-}
-.media-heading {
-  word-break: break-all !important;
 }
 .image-fit {
   display: block;
