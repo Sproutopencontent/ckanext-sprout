@@ -219,9 +219,6 @@ a:hover {
 .table-bordered {
   word-break: break-all;
 }
-.page-heading {
-  word-break: break-all !important;
-}
 @media (max-width: 767px) {
   .centered {
     display: -webkit-box;
