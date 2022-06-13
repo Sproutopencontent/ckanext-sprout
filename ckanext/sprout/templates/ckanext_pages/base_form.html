@@ -1,6 +1,8 @@
 {% import 'macros/form.html' as form %}
 {% import 'macros/wysiwyg.html' as wysiwyg %}
 
+{% asset 'sprout/sprout-ckedit-config' %}
+
 {% set data = data or {} %}
 {% set errors = errors or {} %}
 {% set ckan_29_or_higher = h.ckan_version().split('.')[1] | int >= 9 %}

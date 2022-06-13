@@ -1,11 +1,11 @@
-# sprout-js:
-#   filter: rjsmin
-#   output: ckanext-sprout/%(version)s-sprout.js
-#   contents:
-#     - js/sprout.js
-#   extra:
-#     preload:
-#       - base/main
+sprout-ckedit-config:
+  filter: rjsmin
+  output: ckanext-sprout/%(version)s-ckedit-config.js
+  contents:
+    - js/ckedit-config.js
+  extra:
+    preload:
+      - base/main
 
 sprout-style:
   filter: cssrewrite
