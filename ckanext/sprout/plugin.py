@@ -1,9 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.sprout.sprout_blueprint import blueprint
-
 from ckanext.sprout import helpers as h
-
 from ckanext.pages.interfaces import IPagesSchema
 
 
@@ -23,10 +21,15 @@ class SproutPlugin(plugins.SingletonPlugin):
     # IPagesSchema
 
     def update_pages_schema(self, schema):
+
+        ignore_missing = plugins.toolkit.get_validator('ignore_missing')
+        isodate = plugins.toolkit.get_validator('isodate')
+
         schema.update({
             'featured': [
                 toolkit.get_validator('ignore_missing'),
-                toolkit.get_validator('boolean_validator')]
+                toolkit.get_validator('boolean_validator')],
+            'publish_date': [ignore_missing, isodate],
         })
         return schema
 
