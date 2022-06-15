@@ -14,7 +14,7 @@
     </div>
 
     <div class="container">
-        <h2>Explore content</h2>
+        <h2>{{ _('Explore content') }}</h2>
         <hr>
         {% block featured_group %}
         {% snippet 'home/snippets/featured_group.html' %}
@@ -22,7 +22,7 @@
     </div>
 
     <div class="container">
-        <h2>Stats</h2>
+        <h2>{{ _('{0} statistics').format(g.site_title) }}</h2>
         <hr>
           <div class="row stats-row">
             <div class="col col-md-offset-1">
@@ -32,7 +32,7 @@
     </div>
         
     <div class="main container">
-        <h2>Get inspired with content stories</h2>
+        <h2>{{ _('Get inspired with content stories') }}</h2>
         <hr>
         {% snippet 'snippets/stories.html' %}
     </div>
