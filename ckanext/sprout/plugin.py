@@ -22,14 +22,10 @@ class SproutPlugin(plugins.SingletonPlugin):
 
     def update_pages_schema(self, schema):
 
-        ignore_missing = plugins.toolkit.get_validator('ignore_missing')
-        isodate = plugins.toolkit.get_validator('isodate')
-
         schema.update({
             'featured': [
                 toolkit.get_validator('ignore_missing'),
-                toolkit.get_validator('boolean_validator')],
-            'publish_date': [ignore_missing, isodate],
+                toolkit.get_validator('boolean_validator')]
         })
         return schema
 
