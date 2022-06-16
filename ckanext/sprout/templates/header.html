@@ -130,13 +130,11 @@
 </li>
 
 {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
-  <li class="{{ h.sprout_link_active('google_analytics', 'analytics_view') }}" >
-    <a href="{{ h.url_for('google_analytics.analytics_view') }}">{{ _('Analytics') }}</a>
-  </li>
+  {{ h.build_nav_main(('google_analytics.analytics_view', _('Analytics')) ) }}
 {% endif %}
 
 {% if 'pages' in c.plugins %}
-  {{ h.build_nav_main(('pages.blog_index', _('Stories')) ) }}
+  <li class="{{ h.sprout_link_active('pages', 'blog_index') }}"><a href="{{ h.url_for('pages.blog_index') }}">{{ _('Stories') }}</a></li>
 {% endif %}
 
 {% endblock %}

@@ -6,7 +6,7 @@
           {% block footer_nav %}
             <ul class="list-unstyled">
               {% block footer_links %}
-                <li>Copyright © 2022 Sprout Pilot - <a href="{{ h.url_for('home.index') }}">The Open Content Agriculture Platform</a></li>
+                <li>Copyright © 2022 Sprout - <a href="{{ h.url_for('home.index') }}">The Open Content Agriculture Platform</a></li>
               {% endblock %}
             </ul>
           {% endblock %}
@@ -17,7 +17,7 @@
             <li><a class="footer-links" href="{{ h.url_for('contact.form') }}">{{ _('Contact') }}</a></li>
             <li><a class="footer-links" href="{{ h.url_for('pages.show', page='frequently-asked-questions') }}">{{ _('Frequently Asked Questions') }}</a></li>
             <li><a class="footer-links" href="{{ h.url_for('pages.show', page='privacy') }}">{{ _('Privacy') }}</a></li>
-            <li><a class="footer-links" href="{{ h.url_for('pages.show', page='terms-of-service-pilot-draft') }}">{{ _('Terms of Service') }}</a></li>
+            <li><a class="footer-links" href="{{ h.url_for('pages.show', page='terms') }}">{{ _('Terms of Service') }}</a></li>
           </ul>
           {% endblock %}
         </div>
