@@ -109,6 +109,7 @@
 {% block header_site_search %} {% endblock %}
 {% block header_site_navigation_tabs %}
 
+
 <li class="{{ h.sprout_link_active('home', 'index') }}"><a href="{{ h.url_for('home.index') }}">{{ _('Home') }}</a></li>
 <li class="{{ h.sprout_link_active('home', 'about') }}"><a href="{{ h.url_for('home.about') }}">{{ _('About Sprout') }}</a></li>
 <li>
@@ -130,11 +131,13 @@
 </li>
 
 {% if 'googleanalytics' in c.plugins and c.userobj.sysadmin %}
-  {{ h.build_nav_main(('google_analytics.analytics_view', _('Analytics')) ) }}
+  <li class="{{ h.sprout_link_active('google_analytics', 'analytics_view') }}"><a href="{{ h.url_for('google_analytics.analytics_view') }}">{{ _('Analytics') }}</a></li>
 {% endif %}
 
 {% if 'pages' in c.plugins %}
+  {{ h.build_nav_main() }}
   <li class="{{ h.sprout_link_active('pages', 'blog_index') }}"><a href="{{ h.url_for('pages.blog_index') }}">{{ _('Stories') }}</a></li>
+
 {% endif %}
 
 {% endblock %}
