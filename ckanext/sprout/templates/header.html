@@ -135,7 +135,9 @@
 {% endif %}
 
 {% if 'pages' in c.plugins %}
-  {{ h.build_nav_main(('pages.blog_index', _('Stories'))) }}
+  {{ h.build_nav_main() }}
+  <li class="{{ h.sprout_link_active('pages', 'blog_index') }}"><a href="{{ h.url_for('pages.blog_index') }}">{{ _('Stories') }}</a></li>
+
 {% endif %}
 
 {% endblock %}
