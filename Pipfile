@@ -1,0 +1,12 @@
+[[source]]
+url = "https://github.com/sproutopencontent"
+verify_ssl = true
+name = "forecaster"
+
+[packages]
+requests = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
