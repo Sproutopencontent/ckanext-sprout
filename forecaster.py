@@ -4,13 +4,13 @@ import logging
 from os import environ
 import requests
 
-api_key = environ.get('TOMORROW_API_KEY')
-api_url = environ.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
-strings_file = environ.get('WEATHER_CODE_FILE', 'english.json')
-log_level = environ.get('LOG_LEVEL', 'INFO')
-timezone_name = environ.get('TZ', 'Africa/Nairobi')
+API_KEY = environ.get('TOMORROW_API_KEY')
+API_URL = environ.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
+STRINGS_FILE = environ.get('WEATHER_CODE_FILE', 'english.json')
+LOG_LEVEL = environ.get('LOG_LEVEL', 'INFO')
+TIMEZONE_NAME = environ.get('TZ', 'Africa/Nairobi')
 
-logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=log_level)
+logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=LOG_LEVEL)
 
 api_session = requests.session()
 strings = None
@@ -32,7 +32,7 @@ class StringLookup:
 
 def get_daily_forecasts(latlng, timezone):
     params = {
-        'apikey': api_key,
+        'apikey': API_KEY,
         # We only want a week of data
         'endTime': 'nowPlus7d',
         'fields': [
@@ -48,7 +48,7 @@ def get_daily_forecasts(latlng, timezone):
         'units': 'metric'
     }
     try:
-        response = api_session.get(f'{api_url}/timelines', params=params, timeout=10.0)
+        response = api_session.get(f'{API_URL}/timelines', params=params, timeout=10.0)
         response_body = response.json()
         logging.debug(json.dumps(response_body, indent=2))
         # Return just the data
@@ -104,8 +104,8 @@ def format_forecasts(forecasts):
 
 def main():
     global strings
-    strings = StringLookup(strings_file)
-    forecasts = get_daily_forecasts([12.603018100000003, 37.42744581804207], timezone_name)
+    strings = StringLookup(STRINGS_FILE)
+    forecasts = get_daily_forecasts([12.603018100000003, 37.42744581804207], TIMEZONE_NAME)
     print(format_forecasts(forecasts))
 
 if __name__ == '__main__':
