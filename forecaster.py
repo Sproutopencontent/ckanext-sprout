@@ -33,7 +33,8 @@ class StringLookup:
 def get_daily_forecasts(latlng, timezone):
     params = {
         'apikey': API_KEY,
-        # We only want a week of data
+        # We only want a week of data, starting tomorrow
+        'startTime': 'nowPlus1d',
         'endTime': 'nowPlus7d',
         'fields': [
             'cloudCoverAvg',
