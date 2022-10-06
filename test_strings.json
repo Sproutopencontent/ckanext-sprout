@@ -1,0 +1,26 @@
+{
+  "day": {
+    "0": "Mon",
+    "1": "Tue",
+    "2": "Wed",
+    "3": "Thu",
+    "4": "Fri",
+    "5": "Sat",
+    "6": "Sun"
+  },
+  "floodIndex": {
+    "0": "No flooding",
+    "1": "Minor flooding possible",
+    "2": "Moderate flooding possible",
+    "3": "Significant flooding possible",
+    "4": "Major flooding possible",
+    "5": "Major flooding likely!"
+  },
+  "weatherCodeFullDay": {
+    "0": "Unknown",
+    "1000": "Sunny",
+    "1100": "Sunny",
+    "4202": "Heavy rain",
+    "4212": "Heavy rain"
+  }
+}
