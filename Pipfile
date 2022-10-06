@@ -1,7 +1,7 @@
 [[source]]
-url = "https://github.com/sproutopencontent"
+url = "https://pypi.org/simple"
 verify_ssl = true
-name = "forecaster"
+name = "pypi"
 
 [packages]
 requests = "*"
