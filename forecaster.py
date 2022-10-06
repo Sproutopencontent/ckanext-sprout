@@ -6,7 +6,7 @@ import requests
 
 API_KEY = environ.get('TOMORROW_API_KEY')
 API_URL = environ.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
-STRINGS_FILE = environ.get('WEATHER_CODE_FILE', 'english.json')
+STRINGS_FILE = environ.get('STRINGS_FILE', 'english.json')
 LOG_LEVEL = environ.get('LOG_LEVEL', 'INFO')
 TIMEZONE_NAME = environ.get('TZ', 'Africa/Nairobi')
 
