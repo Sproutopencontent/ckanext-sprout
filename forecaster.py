@@ -1,15 +1,18 @@
+import csv
 from datetime import datetime
 import json
 import logging
 import os
 import requests
-from string_lookup import *
+import sys
+from string_lookup import StringLookup
 
 class ForecasterConfig:
     def __init__(self, env):
         self.LOG_LEVEL = env.get('LOG_LEVEL', 'INFO')
         self.API_KEY = env.get('TOMORROW_API_KEY')
         self.API_URL = env.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
+        self.LOCATIONS_FILE = env.get('LOCATIONS_FILE', 'example_locations.csv')
         self.STRINGS_FILE = env.get('STRINGS_FILE', 'english.json')
         self.TIMEZONE_NAME = env.get('TZ', 'Africa/Nairobi')
 
@@ -82,12 +85,27 @@ class Forecaster:
         return '. '.join(segments)
 
 
-    def run(self):
-        forecasts = self.get_daily_forecasts([-1.2874821, 36.8310251])
-        print(self.format_forecasts(forecasts))
+    def run(self, output_file):
+        with open(config.LOCATIONS_FILE) as locations_csv:
+            locations_reader = csv.reader(locations_csv)
+            output_writer = csv.writer(output_file)
+
+            for row in locations_reader:
+                # row[0]: Machine-readable unique identifier
+                # row[1]: Location name
+                # row[2]: Latitude
+                # row[3]: Longitude
+                # row[4]: Human-readable identifier if different from location name (optional)
+                # row[5]: Weather forecast (output only)
+                forecasts = self.get_daily_forecasts([row[2], row[3]])
+                output_writer.writerow(row + [self.format_forecasts(forecasts)])
 
 if __name__ == '__main__':
     # Configure from OS environment variables
     config = ForecasterConfig(os.environ)
-    logging.basicConfig(format='%(asctime)s %(levelname)-8s %(message)s', level=config.LOG_LEVEL)
-    Forecaster(config).run()
+    logging.basicConfig(
+        format='%(asctime)s %(levelname)-8s %(message)s',
+        level=config.LOG_LEVEL,
+        stream=sys.stderr
+    )
+    Forecaster(config).run(sys.stdout)
