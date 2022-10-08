@@ -51,41 +51,16 @@ forecast_flood_and_rain_b = {
 
 forecaster = Forecaster(ForecasterConfig(env))
 
-class TestIsSameForecast:
-    def test_match_without_flood(self):
-        assert forecaster.is_same_forecast(forecast_sunny_a, forecast_sunny_a)
-        assert forecaster.is_same_forecast(forecast_sunny_a, forecast_sunny_b)
-
-    def test_mismatch_without_flood(self):
-        assert not forecaster.is_same_forecast(forecast_sunny_a, forecast_rain)
-
-    def test_match_with_flood(self):
-        assert forecaster.is_same_forecast(forecast_flood_and_rain_a, forecast_flood_and_rain_a)
-        assert forecaster.is_same_forecast(forecast_flood_and_rain_a, forecast_flood_and_rain_b)
-
-    def test_mismatch_with_flood(self):
-        assert not forecaster.is_same_forecast(forecast_sunny_a, forecast_flood_and_rain_a)
-        assert not forecaster.is_same_forecast(forecast_rain, forecast_flood_and_rain_a)
-
-class TestFormatForecastSegment:
-    def test_single_day_no_flood(self):
-        output = forecaster.format_forecast_segment(forecast_sunny_a, forecast_sunny_a)
+class TestFormatForecasts:
+    def test_single_day(self):
+        output = forecaster.format_forecasts([forecast_sunny_a])
         assert output == 'Thu:Sunny'
 
-    def test_multiple_days_no_flood(self):
-        output = forecaster.format_forecast_segment(forecast_sunny_a, forecast_sunny_b)
-        assert output == 'Thu-Fri:Sunny'
+    def test_single_day_with_flooding(self):
+        output = forecaster.format_forecasts([forecast_flood_and_rain_a])
+        assert output == 'Mon:Significant flooding possible'
 
-    def test_single_day_with_flood(self):
-       output = forecaster.format_forecast_segment(forecast_flood_and_rain_a, forecast_flood_and_rain_a)
-       assert output == 'Mon:Significant flooding possible'
-
-    def test_multiple_days_with_flood(self):
-       output = forecaster.format_forecast_segment(forecast_flood_and_rain_a, forecast_flood_and_rain_b)
-       assert output == 'Mon-Tue:Significant flooding possible'
-
-class TestFormatForecasts:
-    def test_same_forecast_all_days(self):
+    def test_multiple_days_same_forecast(self):
         output = forecaster.format_forecasts([forecast_sunny_a, forecast_sunny_b, forecast_sunny_c])
         assert output == 'Thu-Sat:Sunny'
 
