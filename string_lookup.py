@@ -7,7 +7,7 @@ class StringLookup:
             self.data = json.load(raw_file)
 
     def lookup_weather_code(self, code):
-        return self.data['weatherCodeFullDay'].get(str(code), '?')
+        return self.data['weatherCode'].get(str(code), '?')
 
     def lookup_day_name(self, day):
         return self.data['day'].get(str(day), '?')

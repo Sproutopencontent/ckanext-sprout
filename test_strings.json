@@ -16,7 +16,7 @@
     "4": "Major flooding possible",
     "5": "Major flooding likely!"
   },
-  "weatherCodeFullDay": {
+  "weatherCode": {
     "0": "Unknown",
     "1000": "Sunny",
     "1100": "Sunny",

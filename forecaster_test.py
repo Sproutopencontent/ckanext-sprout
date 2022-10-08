@@ -10,42 +10,42 @@ forecast_sunny_a = {
     'startTime': '2022-10-06T06:00:00+03:00', # Thursday
     'values': {
         'floodIndex': 0,
-        'weatherCodeFullDay': 1000,
+        'weatherCode': 1000,
     }
 }
 forecast_sunny_b = {
     'startTime': '2022-10-07T06:00:00+03:00', # Friday
     'values': {
         'floodIndex': 0,
-        'weatherCodeFullDay': 1100,
+        'weatherCode': 1100,
     }
 }
 forecast_sunny_c = {
     'startTime': '2022-10-08T06:00:00+03:00', # Saturday
     'values': {
         'floodIndex': 0,
-        'weatherCodeFullDay': 1100,
+        'weatherCode': 1100,
     }
 }
 forecast_rain = {
     'startTime': '2022-10-09T06:00:00+03:00', # Sunday
     'values': {
         'floodIndex': 0,
-        'weatherCodeFullDay': 4212,
+        'weatherCode': 4212,
     }
 }
 forecast_flood_and_rain_a = {
     'startTime': '2022-10-10T06:00:00+03:00', # Monday
     'values': {
         'floodIndex': 3,
-        'weatherCodeFullDay': 4212,
+        'weatherCode': 4212,
     }
 }
 forecast_flood_and_rain_b = {
     'startTime': '2022-10-11T06:00:00+03:00', # Tuesday
     'values': {
         'floodIndex': 3,
-        'weatherCodeFullDay': 4202,
+        'weatherCode': 4202,
     }
 }
 

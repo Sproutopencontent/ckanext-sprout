@@ -30,7 +30,7 @@ class Forecaster:
                 'precipitationIntensityAvg',
                 'precipitationProbabilityAvg',
                 'floodIndex',
-                'weatherCodeFullDay'
+                'weatherCode',
             ],
             'location': f'{latlng[0]},{latlng[1]}',
             'timesteps': '1d',
@@ -58,8 +58,8 @@ class Forecaster:
         if flood_index_a > 0 or flood_index_b > 0:
             return flood_index_a == flood_index_b
 
-        summary_a = self.strings.lookup_weather_code(forecast_a['values']['weatherCodeFullDay'])
-        summary_b = self.strings.lookup_weather_code(forecast_b['values']['weatherCodeFullDay'])
+        summary_a = self.strings.lookup_weather_code(forecast_a['values']['weatherCode'])
+        summary_b = self.strings.lookup_weather_code(forecast_b['values']['weatherCode'])
 
         return summary_a == summary_b
 
@@ -72,7 +72,7 @@ class Forecaster:
         if flood_index > 0:
             summary = self.strings.lookup_flood_index(flood_index)
         else:
-            summary = self.strings.lookup_weather_code(first_forecast['values']['weatherCodeFullDay'])
+            summary = self.strings.lookup_weather_code(first_forecast['values']['weatherCode'])
 
         day_names = self.strings.lookup_day_name(first_day)
         if first_day != last_day:
@@ -97,7 +97,7 @@ class Forecaster:
 
 
     def run(self):
-        forecasts = self.get_daily_forecasts([12.603018100000003, 37.42744581804207])
+        forecasts = self.get_daily_forecasts([-1.2874821, 36.8310251])
         print(self.format_forecasts(forecasts))
 
 if __name__ == '__main__':
