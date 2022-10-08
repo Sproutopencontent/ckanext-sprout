@@ -25,13 +25,7 @@ class Forecaster:
             # We only want a week of data, starting tomorrow
             'startTime': 'nowPlus1d',
             'endTime': 'nowPlus7d',
-            'fields': [
-                'cloudCoverAvg',
-                'precipitationIntensityAvg',
-                'precipitationProbabilityAvg',
-                'floodIndex',
-                'weatherCode',
-            ],
+            'fields': ['floodIndex', 'weatherCode'],
             'location': f'{latlng[0]},{latlng[1]}',
             'timesteps': '1d',
             'timezone': self.config.TIMEZONE_NAME,
@@ -50,29 +44,21 @@ class Forecaster:
         except requests.exceptions.RequestException:
             logging.exception('Request error')
 
-    def is_same_forecast(self, forecast_a, forecast_b):
-        flood_index_a = forecast_a['values'].get('floodIndex', 0)
-        flood_index_b = forecast_b['values'].get('floodIndex', 0)
+    def summarize_forecast(self, forecast):
+        flood_index = forecast['values'].get('floodIndex', 0)
 
         # Flood index takes precedence when greater than zero
-        if flood_index_a > 0 or flood_index_b > 0:
-            return flood_index_a == flood_index_b
+        if flood_index > 0:
+            return self.strings.lookup_flood_index(flood_index)
+        return self.strings.lookup_weather_code(forecast['values']['weatherCode'])
 
-        summary_a = self.strings.lookup_weather_code(forecast_a['values']['weatherCode'])
-        summary_b = self.strings.lookup_weather_code(forecast_b['values']['weatherCode'])
-
-        return summary_a == summary_b
+    def is_same_forecast(self, forecast_a, forecast_b):
+        return self.summarize_forecast(forecast_a) == self.summarize_forecast(forecast_b)
 
     def format_forecast_segment(self, first_forecast, last_forecast):
         first_day = datetime.fromisoformat(first_forecast['startTime']).weekday()
         last_day = datetime.fromisoformat(last_forecast['startTime']).weekday()
-        flood_index = first_forecast['values'].get('floodIndex', 0)
-
-        # Flood index takes precedence when greater than zero
-        if flood_index > 0:
-            summary = self.strings.lookup_flood_index(flood_index)
-        else:
-            summary = self.strings.lookup_weather_code(first_forecast['values']['weatherCode'])
+        summary = self.summarize_forecast(first_forecast)
 
         day_names = self.strings.lookup_day_name(first_day)
         if first_day != last_day:
