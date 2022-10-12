@@ -1,0 +1,28 @@
+<footer class="site-footer">
+    <div class="container">
+      {% block footer_content %}
+      <div class="row">
+        <div class="col-sm-8">
+          {% block footer_nav %}
+            <ul class="list-unstyled">
+              {% block footer_links %}
+                <li>Copyright © 2022 Sprout - <a href="{{ h.url_for('home.index') }}">The Open Content Agriculture Platform</a></li>
+              {% endblock %}
+            </ul>
+          {% endblock %}
+        </div>
+        <div class="col-sm-4">
+          {% block footer_attribution %}
+          <ul class="list-unstyled">
+            <li><a class="footer-links" href="{{ h.url_for('contact.form') }}">{{ _('Contact') }}</a></li>
+            <li><a class="footer-links" href="{{ h.url_for('pages.show', page='frequently-asked-questions') }}">{{ _('Frequently Asked Questions') }}</a></li>
+            <li><a class="footer-links" href="{{ h.url_for('pages.show', page='privacy') }}">{{ _('Privacy') }}</a></li>
+            <li><a class="footer-links" href="{{ h.url_for('pages.show', page='terms') }}">{{ _('Terms of Service') }}</a></li>
+          </ul>
+          {% endblock %}
+        </div>
+      </div>
+      {% endblock %}
+    </div>
+  </footer>
+  

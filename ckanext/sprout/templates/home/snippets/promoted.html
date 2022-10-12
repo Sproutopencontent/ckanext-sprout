@@ -1,0 +1,26 @@
+{% set intro = g.site_intro_text %}
+
+<div class="row welcome">
+  <div>
+    {% if intro %}
+      {{ h.render_markdown(intro) }}
+    {% else %}
+      <h2 class="page-heading">{{ _("Welcome to Sprout") }}</h2>
+      <p>
+        {% trans %} Sprout is the open content agriculture platform where global agriculture experts and farmer facing organizations
+        meet to share and discover farmer-friendly,
+        digital ready content and services designed to build smallholder skills, resilience and income earning
+        opportunities.
+        The platform is free of charge.
+        {% endtrans %}
+      </p>
+      <p>{% trans %} Sprout has been designed by Mercy Corps AgriFin, developed and hosted by KALRO and funded by GIZ Digital
+         Agriculture Africa.
+         {% endtrans %}
+      </p>
+    {% endif %}
+  </div>
+  <div>
+    <a href="/about" ><button type="button" class="btn btn-success btn-lg">Learn More</button></a>
+  </div>
+</div>

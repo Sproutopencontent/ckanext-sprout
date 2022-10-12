@@ -1,0 +1,35 @@
+{% set pages = h.get_featured_pages(3) %}
+{% set pages_total = pages|length %}
+{% set editor = h.get_wysiwyg_editor() %}
+
+<div class="centered">
+
+  {% for page in pages %}
+
+  {% set url = h.url_for('pages.blog_show', page=page.name) %}
+
+  <div class="col col-xs-4">
+    <div class="card-group centered-stories">
+      <div class="card">
+        <img class="card-img-top" width="350px" height="200px"
+          src="{{ page.image or h.url_for_static('/base/images/no-picture.jpg')}}" alt="">
+        <div class="card-body">
+          <a href="{{ url }}" class="card-title">{{ page.title|truncate(70, True, '...') }}</a>
+          {% if page.content %}
+          {% if editor %}
+          <div class="card-text">
+            {{page.content|striptags|truncate(500, True, '...')}}
+          </div>
+          {% else %}
+          {{ h.markdown_extract(page.content) }}
+          {% endif %}
+          {% else %}
+          <p class="empty">{{ _('This page currently has no content') }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% endfor %}
+</div>

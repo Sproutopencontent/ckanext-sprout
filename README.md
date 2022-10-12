@@ -7,11 +7,6 @@ An extension that will contain all the custom work and UI adjustments for the Sp
 
 ## Requirements
 
-**TODO:** For example, you might want to mention here which versions of CKAN this
-extension works with.
-
-If your extension works across different versions you can add the following table:
-
 Compatibility with core CKAN versions:
 
 | CKAN version    | Compatible?   |
@@ -19,23 +14,63 @@ Compatibility with core CKAN versions:
 | 2.6 and earlier | not tested    |
 | 2.7             | not tested    |
 | 2.8             | not tested    |
-| 2.9             | not tested    |
-
-Suggested values:
-
-* "yes"
-* "not tested" - I can't think of a reason why it wouldn't work
-* "not yet" - there is an intention to get it working
-* "no"
+| 2.9             | yes           |
 
 
 ## Installation
 
-**TODO:** Add any additional install steps to the list below.
-   For example installing any non-Python dependencies or adding any required
-   config settings.
+This extension requires other extensions to be installed prior to installation and configuring for CKAN.
 
-To install ckanext-sprout:
+
+#### ckanext-scheming
+
+```
+pip install -e git+https://github.com/ckan/ckanext-scheming.git@master#egg=ckanext-scheming
+```
+
+
+#### ckanext-pages
+
+```
+pip install -e git+https://github.com/ckan/ckanext-pages.git@master#egg=ckanext-pages
+pip install -r https://raw.githubusercontent.com/ckan/ckanext-pages/master/requirements.txt
+```
+
+
+Configure pages:
+```
+ckanext.pages.organization = True
+ckanext.pages.group = True
+ckanext.pages.editor = ckeditor
+ckanext.pages.allow_html = True
+```
+
+
+#### ckanext-googleanalytics
+
+```
+pip install -e git+https://github.com/keitaroinc/ckanext-googleanalytics.git@analytics_page#egg=ckanext-googleanalytics
+pip install -e https://raw.githubusercontent.com/keitaroinc/ckanext-googleanalytics/analytics_page/requirements.txt
+```
+
+
+Configure googleanalytics:
+```
+googleanalytics.id = UA-1010101-1
+googleanalytics.account = Account name (i.e. data.gov.uk, see top level item at https://www.google.com/analytics)
+googleanalytics.username = googleaccount@gmail.com
+googleanalytics.password = googlepassword
+```
+
+
+#### ckanext-datasetversions
+
+```
+pip install -e git+https://github.com/keitaroinc/ckanext-datasetversions.git@master#egg=ckanext-datasetversions
+```
+
+
+### To install ckanext-sprout:
 
 1. Activate your CKAN virtual environment, for example:
 
@@ -59,13 +94,15 @@ To install ckanext-sprout:
 
 ## Config settings
 
-None at present
+Additional configuration settings for [Sprout](https://sprout.staging.ckan.plus/):
 
-**TODO:** Document any optional config settings here. For example:
 
-	# The minimum number of hours to wait before re-checking a resource
-	# (optional, default: 24).
-	ckanext.sprout.some_setting = some_default_value
+```
+scheming.dataset_schemas = ckanext.sprout:dataset_schema.json
+scheming.presets = ckanext.scheming:presets.json ckanext.datasetversions:presets.json
+
+licenses_group_url = file:///path/to/your/extensions/ckanext-sprout/ckanext/sprout/sprout-licenses.json
+```
 
 
 ## Developer installation

@@ -1,0 +1,118 @@
+.navbar {
+  min-height: 20px;
+  padding: 0;
+}
+
+.nav-pills {
+  font-size: 18px;
+}
+
+.masthead .navbar-collapse {
+  float: left !important;
+}
+
+.masthead .navigation .nav-pills li.active a {
+  background-color: @brand-quaternary;
+  color: @brand-background;
+}
+
+.masthead .navigation .nav-pills li a:hover .svg-icon,
+.masthead .navigation .nav-pills li a:focus .svg-icon {
+  fill: @brand-background  !important;
+}
+
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li a:focus {
+  color: @brand-background;
+  background-color: @brand-quaternary;
+}
+
+.account-masthead {
+  background: @white;
+}
+
+.account-masthead .account {
+  margin-right: 20px;
+  background: @white  !important;
+}
+
+.sprout-logo {
+  background: @white;
+  max-width: 380px;
+  max-height: 150px;
+  background-repeat: no-repeat;
+  box-sizing: border-box;
+  background-size: cover;
+  background-origin: content-box;
+}
+
+.account-masthead .account ul li a:hover {
+  color: @brand-background;
+  background-color: @brand-primary;
+}
+
+@media (max-width: 767px) {
+  .sprout-logo {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .account-masthead .account {
+    float: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .account-masthead .account {
+    padding-left: 0;
+  }
+}
+
+.account-masthead .account {
+  padding-left: 0;
+}
+
+.search-bar {
+  padding-left: 15%;
+  padding-top: 4%;
+  color: @black;
+}
+
+.account-masthead .account ul li a.sub {
+  font-weight: bold;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.dropdown-menu li a {
+  background-color: @brand-primary;
+  font-size: @font-size-18;
+  color: @white;
+}
+
+@media (max-width: 765px) {
+  .masthead .nav li a {
+    width: 200px;
+  }
+
+  .dropdown-menu li a {
+    padding: 3px;
+  }
+}
+
+.navbar {
+  position: relative;
+  z-index: 100;
+}
+
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background-color: #1d6919;
+}
+
+.autocomplete-items {
+  z-index: 1000;
+}
