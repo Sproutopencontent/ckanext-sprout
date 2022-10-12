@@ -13,13 +13,19 @@ class ForecasterConfig:
         self.API_KEY = env.get('TOMORROW_API_KEY')
         self.API_URL = env.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
         self.LOCATIONS_FILE = env.get('LOCATIONS_FILE', 'example_locations.csv')
-        self.STRINGS_FILE = env.get('STRINGS_FILE', 'english.json')
+        # Languages should use ISO 639-3 codes, see:
+        # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+        # Multiple languages can be specified by separating them with commas
+        self.LANGUAGES = env.get('LANGUAGES', 'eng')
         self.TIMEZONE_NAME = env.get('TZ', 'Africa/Nairobi')
 
 class Forecaster:
     def __init__(self, config):
         self.config = config
-        self.strings = StringLookup(config.STRINGS_FILE)
+        self.strings = {
+            lang: StringLookup(f'lang/{lang}.json')
+            for lang in config.LANGUAGES.split(',')
+        }
         self.api_session = requests.session()
 
     def get_daily_forecasts(self, latlng):
@@ -47,43 +53,42 @@ class Forecaster:
         except requests.exceptions.RequestException:
             logging.exception('Request error')
 
-    def summarize_forecast(self, forecast):
+    def summarize_forecast(self, forecast, lang):
         flood_index = forecast['values'].get('floodIndex', 0)
 
         # Flood index takes precedence when greater than zero
         if flood_index > 0:
-            return self.strings.lookup_flood_index(flood_index)
-        return self.strings.lookup_weather_code(forecast['values']['weatherCode'])
+            return self.strings[lang].lookup_flood_index(flood_index)
+        return self.strings[lang].lookup_weather_code(forecast['values']['weatherCode'])
 
-    def is_same_forecast(self, forecast_a, forecast_b):
-        return self.summarize_forecast(forecast_a) == self.summarize_forecast(forecast_b)
+    def is_same_forecast(self, forecast_a, forecast_b, lang):
+        return self.summarize_forecast(forecast_a, lang) == self.summarize_forecast(forecast_b, lang)
 
-    def format_forecast_segment(self, first_forecast, last_forecast):
+    def format_forecast_segment(self, first_forecast, last_forecast, lang):
         first_day = datetime.fromisoformat(first_forecast['startTime']).weekday()
         last_day = datetime.fromisoformat(last_forecast['startTime']).weekday()
-        summary = self.summarize_forecast(first_forecast)
+        summary = self.summarize_forecast(first_forecast, lang)
 
-        day_names = self.strings.lookup_day_name(first_day)
+        day_names = self.strings[lang].lookup_day_name(first_day)
         if first_day != last_day:
-            day_names += f'-{self.strings.lookup_day_name(last_day)}'
+            day_names += f'-{self.strings[lang].lookup_day_name(last_day)}'
         return f'{day_names}:{summary}'
 
-    def format_forecasts(self, forecasts):
+    def format_forecasts(self, forecasts, lang):
         segments = []
         first_forecast_in_run = forecasts[0]
         last_forecast = None
         for forecast in forecasts:
-            if last_forecast is not None and not self.is_same_forecast(first_forecast_in_run, forecast):
+            if last_forecast is not None and not self.is_same_forecast(first_forecast_in_run, forecast, lang):
                 # The forecast changed from yesterday, output the previous run
-                segments.append(self.format_forecast_segment(first_forecast_in_run, last_forecast))
+                segments.append(self.format_forecast_segment(first_forecast_in_run, last_forecast, lang))
                 first_forecast_in_run = forecast
 
             last_forecast = forecast
 
         # Output the final run
-        segments.append(self.format_forecast_segment(first_forecast_in_run, last_forecast))
+        segments.append(self.format_forecast_segment(first_forecast_in_run, last_forecast, lang))
         return '. '.join(segments)
-
 
     def run(self, output_file):
         with open(config.LOCATIONS_FILE) as locations_csv:
@@ -96,9 +101,13 @@ class Forecaster:
                 # row[2]: Latitude
                 # row[3]: Longitude
                 # row[4]: Human-readable identifier if different from location name (optional)
-                # row[5]: Weather forecast (output only)
+                # row[5:]: Weather forecasts (output only, one column per language)
                 forecasts = self.get_daily_forecasts([row[2], row[3]])
-                output_writer.writerow(row + [self.format_forecasts(forecasts)])
+                forecast_cols = [
+                    self.format_forecasts(forecasts, lang)
+                    for lang in self.strings.keys()
+                ]
+                output_writer.writerow(row + forecast_cols)
 
 if __name__ == '__main__':
     # Configure from OS environment variables

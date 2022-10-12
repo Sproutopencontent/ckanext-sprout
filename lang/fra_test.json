@@ -1,0 +1,24 @@
+{
+  "day": {
+    "0": "Lun",
+    "1": "Mar",
+    "2": "Mer",
+    "3": "Jeu",
+    "4": "Ven",
+    "5": "Sam",
+    "6": "Dim"
+  },
+  "floodIndex": {
+    "1": "Inondation mineure possible",
+    "2": "Inondation modérée possible",
+    "3": "Inondation considérable possible",
+    "4": "Inondation majeure possible",
+    "5": "Inondation majeure probable!"
+  },
+  "weatherCode": {
+    "1000": "Ensoleillé",
+    "1100": "Ensoleillé",
+    "4202": "Forte pluie",
+    "4212": "Forte pluie"
+  }
+}

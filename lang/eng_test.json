@@ -9,7 +9,6 @@
     "6": "Sun"
   },
   "floodIndex": {
-    "0": "No flooding",
     "1": "Minor flooding possible",
     "2": "Moderate flooding possible",
     "3": "Significant flooding possible",
@@ -17,7 +16,6 @@
     "5": "Major flooding likely!"
   },
   "weatherCode": {
-    "0": "Unknown",
     "1000": "Sunny",
     "1100": "Sunny",
     "4202": "Heavy rain",

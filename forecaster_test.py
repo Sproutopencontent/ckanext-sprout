@@ -3,7 +3,7 @@ from forecaster import Forecaster, ForecasterConfig
 env = {
     'API_KEY': 'fakekey',
     'API_URL': 'http://localhost:9000',
-    'STRINGS_FILE': 'test_strings.json',
+    'LANGUAGES': 'eng_test,fra_test',
 }
 
 forecast_sunny_a = {
@@ -53,15 +53,18 @@ forecaster = Forecaster(ForecasterConfig(env))
 
 class TestFormatForecasts:
     def test_single_day(self):
-        output = forecaster.format_forecasts([forecast_sunny_a])
+        output = forecaster.format_forecasts([forecast_sunny_a], 'eng_test')
         assert output == 'Thu:Sunny'
 
     def test_single_day_with_flooding(self):
-        output = forecaster.format_forecasts([forecast_flood_and_rain_a])
+        output = forecaster.format_forecasts([forecast_flood_and_rain_a], 'eng_test')
         assert output == 'Mon:Significant flooding possible'
 
     def test_multiple_days_same_forecast(self):
-        output = forecaster.format_forecasts([forecast_sunny_a, forecast_sunny_b, forecast_sunny_c])
+        output = forecaster.format_forecasts(
+            [forecast_sunny_a, forecast_sunny_b, forecast_sunny_c],
+            'eng_test'
+        )
         assert output == 'Thu-Sat:Sunny'
 
     def test_different_forecast_all_days(self):
@@ -69,7 +72,7 @@ class TestFormatForecasts:
             forecast_sunny_c,
             forecast_rain,
             forecast_flood_and_rain_a
-        ])
+        ], 'eng_test')
         assert output == 'Sat:Sunny. Sun:Heavy rain. Mon:Significant flooding possible'
 
     def test_multiple_groups(self):
@@ -80,5 +83,16 @@ class TestFormatForecasts:
             forecast_rain,
             forecast_flood_and_rain_a,
             forecast_flood_and_rain_b
-        ])
+        ], 'eng_test')
         assert output == 'Thu-Sat:Sunny. Sun:Heavy rain. Mon-Tue:Significant flooding possible'
+
+    def test_alternate_language(self):
+        output = forecaster.format_forecasts([
+            forecast_sunny_a,
+            forecast_sunny_b,
+            forecast_sunny_c,
+            forecast_rain,
+            forecast_flood_and_rain_a,
+            forecast_flood_and_rain_b
+        ], 'fra_test')
+        assert output == 'Jeu-Sam:Ensoleillé. Dim:Forte pluie. Lun-Mar:Inondation considérable possible'

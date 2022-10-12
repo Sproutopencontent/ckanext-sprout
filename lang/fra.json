@@ -1,0 +1,43 @@
+{
+  "day": {
+    "0": "Lun",
+    "1": "Mar",
+    "2": "Mer",
+    "3": "Jeu",
+    "4": "Ven",
+    "5": "Sam",
+    "6": "Dim"
+  },
+  "floodIndex": {
+    "1": "Inondation mineure possible",
+    "2": "Inondation modérée possible",
+    "3": "Inondation considérable possible",
+    "4": "Inondation majeure possible",
+    "5": "Inondation majeure probable!"
+  },
+  "weatherCode": {
+    "1000": "Ensoleillé",
+    "1100": "Ensoleillé",
+    "1101": "Assez ensoleillé",
+    "1102": "Nuageux sans pluie",
+    "1001": "Nuageux sans pluie",
+    "2000": "Brouillard",
+    "2100": "Léger brouillard",
+    "4000": "Bruine",
+    "4001": "Pluie",
+    "4200": "Légère pluie",
+    "4201": "Forte pluie",
+    "5000": "Neige",
+    "5001": "Neige",
+    "5100": "Légère neige",
+    "5101": "Forte neige",
+    "6000": "Bruine verglaçante",
+    "6001": "Pluie verglaçante",
+    "6200": "Légère pluie verglaçante",
+    "6201": "Forte pluie verglaçante",
+    "7000": "Grésil",
+    "7101": "Forte grésil",
+    "7102": "Légère grésil",
+    "8000": "Orage"
+  }
+}

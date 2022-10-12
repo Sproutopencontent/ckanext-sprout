@@ -1,6 +1,6 @@
 from string_lookup import StringLookup
 
-strings = StringLookup('test_strings.json')
+strings = StringLookup('lang/eng_test.json')
 
 def test_lookup_valid_weather_code():
     # Ensure this works the same with both string and numeric codes
