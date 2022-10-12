@@ -4,8 +4,10 @@
 {{ super() }}
 
 {% block image %}
+<div class="image-div">
 <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}"
     alt="{{ organization.name }}" class="image-fit media-image">
+</div>
 {% endblock %}
 {% block title %}
 <h2 class="media-heading">{{ organization.display_name|truncate(30, True, '...') }}</h2>
