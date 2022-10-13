@@ -3,13 +3,15 @@ import ckan.plugins.toolkit as toolkit
 from ckanext.sprout.sprout_blueprint import blueprint
 from ckanext.sprout import helpers as h
 from ckanext.pages.interfaces import IPagesSchema
+from typing import Any
 
 
-class SproutPlugin(plugins.SingletonPlugin):
+class SproutPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(IPagesSchema)
     plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.IDatasetForm)
 
     # IConfigurer
 
@@ -47,3 +49,17 @@ class SproutPlugin(plugins.SingletonPlugin):
 
     def get_blueprint(self):
         return [blueprint]
+
+    # IDatasetForm
+    # https://docs.ckan.org/en/2.9/extensions/plugin-interfaces.html#ckan.plugins.interfaces.IDatasetForm
+
+    def package_types(self) -> list[str]:
+        return ['forecast']
+
+    def is_fallback(self):
+        return False
+
+    def edit_template(self) -> Any:
+        # TODO: create a new template that extends a block on the existing template
+        # (see https://docs.ckan.org/en/2.9/theming/templates.html#extending-parent-blocks-with-jinja-s-super)
+        return super(SproutPlugin, self).edit_template()
