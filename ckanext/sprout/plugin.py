@@ -11,7 +11,7 @@ class SproutPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(IPagesSchema)
     plugins.implements(plugins.IBlueprint)
-    plugins.implements(plugins.IDatasetForm)
+    plugins.implements(plugins.IDatasetForm, inherit=True)
 
     # IConfigurer
 
@@ -59,7 +59,7 @@ class SproutPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
     def is_fallback(self):
         return False
 
-    def edit_template(self) -> Any:
+    def read_template(self, _) -> Any:
         # TODO: create a new template that extends a block on the existing template
         # (see https://docs.ckan.org/en/2.9/theming/templates.html#extending-parent-blocks-with-jinja-s-super)
-        return super(SproutPlugin, self).edit_template()
+        return 'templates/forecast/read.html'
