@@ -22,11 +22,13 @@ def new_forecast(id):
         'package_id': id,
         'name': create_date
     })
+    datastore_create = toolkit.get_action('datastore_create')
 
     for forecast in forecasts:
-        toolkit.get_action('datastore_create')(None, {
+        datastore_create(None, {
             'resource_id': resource['id'],
-            'records': [forecast]
+            'records': [forecast],
+            'force': True
         })
 
     return toolkit.redirect_to(f'/forecast/{id}/resource/{resource["id"]}')
