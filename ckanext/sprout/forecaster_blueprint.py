@@ -1,3 +1,4 @@
+from ckan.common import config
 from ckan.plugins import toolkit
 from ckan.views.resource import download
 from datetime import datetime
@@ -9,8 +10,8 @@ forecaster_blueprint = flask.Blueprint('forecaster', __name__)
 
 def new_forecast(id):
     dataset = toolkit.get_action('package_show')(None, {'id': id})
-    # TODO: probably the api key should be in the CKAN config
-    forecaster = Forecaster(os.environ.get('TOMORROW_API_KEY'), languages=dataset['languages'])
+    api_key = config.get('ckan.sprout.tomorrow_api_key', None)
+    forecaster = Forecaster(api_key=api_key, languages=dataset['languages'])
     create_date = datetime.utcnow().isoformat(sep=" ", timespec='minutes')
 
     # TODO: store the locations as a resource and load them here
