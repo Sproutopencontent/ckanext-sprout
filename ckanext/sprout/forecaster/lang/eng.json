@@ -1,0 +1,43 @@
+{
+  "day": {
+    "0": "Mon",
+    "1": "Tue",
+    "2": "Wed",
+    "3": "Thu",
+    "4": "Fri",
+    "5": "Sat",
+    "6": "Sun"
+  },
+  "floodIndex": {
+    "1": "Minor flooding possible",
+    "2": "Moderate flooding possible",
+    "3": "Significant flooding possible",
+    "4": "Major flooding possible",
+    "5": "Major flooding likely!"
+  },
+  "weatherCode": {
+    "1000": "Sunny",
+    "1100": "Sunny",
+    "1101": "Mostly sunny",
+    "1102": "Clouds no rain",
+    "1001": "Clouds no rain",
+    "2000": "Fog",
+    "2100": "Light fog",
+    "4000": "Drizzle",
+    "4001": "Rain",
+    "4200": "Light rain",
+    "4201": "Heavy rain",
+    "5000": "Snow",
+    "5001": "Flurries",
+    "5100": "Light snow",
+    "5101": "Heavy snow",
+    "6000": "Freezing drizzle",
+    "6001": "Freezing rain",
+    "6200": "Light freezing rain",
+    "6201": "Heavy freezing rain",
+    "7000": "Ice pellets",
+    "7101": "Heavy ice pellets",
+    "7102": "Light ice pellets",
+    "8000": "Thunderstorm"
+  }
+}
