@@ -51,7 +51,6 @@
         {
 
             "field_name": "language",
-            "required": true,
             "label": "Language",
             "preset": "multiple_select",
             "choices": [
