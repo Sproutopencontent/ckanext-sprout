@@ -4,45 +4,43 @@ import json
 import logging
 import os
 import requests
-import sys
-from string_lookup import StringLookup
-
-class ForecasterConfig:
-    def __init__(self, env):
-        self.LOG_LEVEL = env.get('LOG_LEVEL', 'INFO')
-        self.API_KEY = env.get('TOMORROW_API_KEY')
-        self.API_URL = env.get('TOMORROW_API_URL', 'https://api.tomorrow.io/v4')
-        self.LOCATIONS_FILE = env.get('LOCATIONS_FILE', 'example_locations.csv')
-        # Languages should use ISO 639-3 codes, see:
-        # https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
-        # Multiple languages can be specified by separating them with commas
-        self.LANGUAGES = env.get('LANGUAGES', 'eng')
-        self.TIMEZONE_NAME = env.get('TZ', 'Africa/Nairobi')
+from .string_lookup import StringLookup
 
 class Forecaster:
-    def __init__(self, config):
-        self.config = config
-        self.strings = {
-            lang: StringLookup(f'lang/{lang}.json')
-            for lang in config.LANGUAGES.split(',')
-        }
+    def __init__(
+        self,
+        api_key,
+        api_url='https://api.tomorrow.io/v4',
+        languages=['en'],
+        timezone='Africa/Nairobi'
+    ):
+        my_dir = os.path.dirname(os.path.realpath(__file__))
+
         self.api_session = requests.session()
+        self.api_url = api_url
+        self.default_api_params = {
+            'apikey': api_key,
+            'timezone': timezone
+        }
+        self.strings = {
+            lang.lower(): StringLookup(f'{my_dir}/lang/{lang.lower()}.json')
+            for lang in languages
+        }
 
     def get_daily_forecasts(self, latlng):
         params = {
-            'apikey': self.config.API_KEY,
+            **self.default_api_params,
             # We only want a week of data, starting tomorrow
             'startTime': 'nowPlus1d',
             'endTime': 'nowPlus7d',
             'fields': ['floodIndex', 'weatherCode'],
             'location': f'{latlng[0]},{latlng[1]}',
             'timesteps': '1d',
-            'timezone': self.config.TIMEZONE_NAME,
             'units': 'metric'
         }
         try:
             response = self.api_session.get(
-                f'{self.config.API_URL}/timelines',
+                f'{self.api_url}/timelines',
                 params=params,
                 timeout=10.0
             )
@@ -74,7 +72,7 @@ class Forecaster:
             day_names += f'-{self.strings[lang].lookup_day_name(last_day)}'
         return f'{day_names}:{summary}'
 
-    def format_forecasts(self, forecasts, lang):
+    def summarize_forecasts(self, forecasts, lang):
         segments = []
         first_forecast_in_run = forecasts[0]
         last_forecast = None
@@ -90,31 +88,14 @@ class Forecaster:
         segments.append(self.format_forecast_segment(first_forecast_in_run, last_forecast, lang))
         return '. '.join(segments)
 
-    def run(self, output_file):
-        with open(config.LOCATIONS_FILE) as locations_csv:
-            locations_reader = csv.reader(locations_csv)
-            output_writer = csv.writer(output_file)
+    def run(self, locations_csv):
+        locations_reader = csv.DictReader(locations_csv)
 
-            for row in locations_reader:
-                # row[0]: Machine-readable unique identifier
-                # row[1]: Location name
-                # row[2]: Latitude
-                # row[3]: Longitude
-                # row[4]: Human-readable identifier if different from location name (optional)
-                # row[5:]: Weather forecasts (output only, one column per language)
-                forecasts = self.get_daily_forecasts([row[2], row[3]])
-                forecast_cols = [
-                    self.format_forecasts(forecasts, lang)
-                    for lang in self.strings.keys()
-                ]
-                output_writer.writerow(row + forecast_cols)
-
-if __name__ == '__main__':
-    # Configure from OS environment variables
-    config = ForecasterConfig(os.environ)
-    logging.basicConfig(
-        format='%(asctime)s %(levelname)-8s %(message)s',
-        level=config.LOG_LEVEL,
-        stream=sys.stderr
-    )
-    Forecaster(config).run(sys.stdout)
+        for row in locations_reader:
+            # Each row must at least include a latitude and longitude field.
+            forecasts = self.get_daily_forecasts([row['latitude'], row['longitude']])
+            row.update({
+                f'forecast_{lang}': self.summarize_forecasts(forecasts, lang)
+                for lang in self.strings.keys()
+            })
+            yield row

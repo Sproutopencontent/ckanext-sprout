@@ -1,6 +1,7 @@
-from string_lookup import StringLookup
+import os
+from .string_lookup import StringLookup
 
-strings = StringLookup('lang/eng_test.json')
+strings = StringLookup(f'{os.path.dirname(os.path.realpath(__file__))}/lang/en_test.json')
 
 def test_lookup_valid_weather_code():
     # Ensure this works the same with both string and numeric codes

@@ -8,17 +8,18 @@ pipenv install
 pipenv shell
 ```
 
-Once inside the shell, you can just run the script:
+Once inside the shell, you can run the module for testing, but note that you need to be in the parent directory. Here's how you can do that as a one-liner in most shells:
 ```
-python forecaster.py
+(cd .. && python -m forecaster)
 ```
 
-or the tests:
+or to run the tests (in this directory):
 ```
-pytest
+pipenv install --dev
+pytest -v
 ```
 
 To set environment variables like the API key (in POSIX-like shells, anyway), you can specify them before the command:
 ```
-LOG_LEVEL=DEBUG TOMORROW_API_KEY=mysecretkey python forecaster.py
+(cd .. && LOG_LEVEL=DEBUG TOMORROW_API_KEY=mysecretkey python -m forecaster)
 ```

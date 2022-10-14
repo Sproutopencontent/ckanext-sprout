@@ -22,37 +22,16 @@
         },
         {
             "field_name": "locations_url",
-            "label": "Locations URL",
-            "preset": "resource_url_upload"
-        }
-    ],
-    "resource_fields": [
-        {
-            "field_name": "url",
-            "label": "URL",
-            "preset": "resource_url_upload"
+            "label": "URL of Locations File (CSV)",
+            "preset": "resource_url_upload",
+            "required": true,
+            "upload_label": "Locations File (CSV)"
         },
         {
-            "field_name": "name",
-            "label": "Name",
-            "form_placeholder": "eg. 2022-10-12 Weather Forecasts"
-        },
-        {
-            "field_name": "description",
-            "label": "Description",
-            "form_snippet": "markdown.html",
-            "form_placeholder": "Some useful notes about the data"
-        },
-        {
-            "field_name": "format",
-            "label": "Format",
-            "preset": "resource_format_autocomplete"
-        },
-        {
-
-            "field_name": "language",
-            "label": "Language",
+            "field_name": "languages",
+            "label": "Languages",
             "preset": "multiple_select",
+            "required": true,
             "choices": [
                 {
                     "label": "English",
@@ -61,12 +40,15 @@
                 {
                     "label": "French",
                     "value": "FR"
-                },
-                {
-                    "label": "Kiswahili",
-                    "value": "SW"
                 }
             ]
+        }
+    ],
+    "resource_fields": [
+        {
+            "field_name": "name",
+            "label": "Name",
+            "form_placeholder": "eg. 2022-10-12 Weather Forecasts"
         }
     ]
 }

@@ -8,6 +8,7 @@ requests = "*"
 
 [dev-packages]
 pytest = "*"
+pytest-httpserver = "*"
 
 [requires]
 python_version = "3.9"

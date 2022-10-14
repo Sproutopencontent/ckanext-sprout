@@ -1,10 +1,9 @@
-from forecaster import Forecaster, ForecasterConfig
+from .forecaster import Forecaster
+import pytest
 
-env = {
-    'API_KEY': 'fakekey',
-    'API_URL': 'http://localhost:9000',
-    'LANGUAGES': 'eng_test,fra_test',
-}
+# Constants
+
+locations_csv = ['latitude,longitude', '0.0,0.0']
 
 forecast_sunny_a = {
     'startTime': '2022-10-06T06:00:00+03:00', # Thursday
@@ -49,50 +48,85 @@ forecast_flood_and_rain_b = {
     }
 }
 
-forecaster = Forecaster(ForecasterConfig(env))
+# Helper functions
 
-class TestFormatForecasts:
-    def test_single_day(self):
-        output = forecaster.format_forecasts([forecast_sunny_a], 'eng_test')
-        assert output == 'Thu:Sunny'
+def make_response(forecasts):
+    return {
+        'data': {
+            'timelines': [{
+                'intervals': forecasts
+            }]
+        }
+    }
 
-    def test_single_day_with_flooding(self):
-        output = forecaster.format_forecasts([forecast_flood_and_rain_a], 'eng_test')
-        assert output == 'Mon:Significant flooding possible'
+# Fixtures
 
-    def test_multiple_days_same_forecast(self):
-        output = forecaster.format_forecasts(
-            [forecast_sunny_a, forecast_sunny_b, forecast_sunny_c],
-            'eng_test'
-        )
-        assert output == 'Thu-Sat:Sunny'
+@pytest.fixture
+def forecaster(httpserver):
+    return Forecaster(
+        api_key='testkey',
+        api_url=f'http://{httpserver.host}:{httpserver.port}',
+        languages='en_test,fr_test'
+    )
 
-    def test_different_forecast_all_days(self):
-        output = forecaster.format_forecasts([
-            forecast_sunny_c,
-            forecast_rain,
-            forecast_flood_and_rain_a
-        ], 'eng_test')
-        assert output == 'Sat:Sunny. Sun:Heavy rain. Mon:Significant flooding possible'
+# Tests
 
-    def test_multiple_groups(self):
-        output = forecaster.format_forecasts([
-            forecast_sunny_a,
-            forecast_sunny_b,
-            forecast_sunny_c,
-            forecast_rain,
-            forecast_flood_and_rain_a,
-            forecast_flood_and_rain_b
-        ], 'eng_test')
-        assert output == 'Thu-Sat:Sunny. Sun:Heavy rain. Mon-Tue:Significant flooding possible'
+def test_single_day(httpserver, forecaster):
+    httpserver.expect_request('/timelines').respond_with_json(make_response([
+        forecast_sunny_a
+    ]))
+    assert list(forecaster.run(locations_csv)) == [{
+        'latitude': '0.0',
+        'longitude': '0.0',
+        'forecast_en_test': 'Thu:Sunny',
+        'forecast_fr_test': 'Jeu:Ensoleillé'
+    }]
 
-    def test_alternate_language(self):
-        output = forecaster.format_forecasts([
-            forecast_sunny_a,
-            forecast_sunny_b,
-            forecast_sunny_c,
-            forecast_rain,
-            forecast_flood_and_rain_a,
-            forecast_flood_and_rain_b
-        ], 'fra_test')
-        assert output == 'Jeu-Sam:Ensoleillé. Dim:Forte pluie. Lun-Mar:Inondation considérable possible'
+def test_single_day_with_flooding(httpserver, forecaster):
+    httpserver.expect_request('/timelines').respond_with_json(make_response([
+        forecast_flood_and_rain_a
+    ]))
+    assert list(forecaster.run(locations_csv)) == [{
+        'latitude': '0.0',
+        'longitude': '0.0',
+        'forecast_en_test': 'Mon:Significant flooding possible',
+        'forecast_fr_test': 'Lun:Inondation considérable possible'
+    }]
+
+def test_multiple_days_same_forecast(httpserver, forecaster):
+    httpserver.expect_request('/timelines').respond_with_json(make_response([
+        forecast_sunny_a, forecast_sunny_b, forecast_sunny_c
+    ]))
+    assert list(forecaster.run(locations_csv)) == [{
+        'latitude': '0.0',
+        'longitude': '0.0',
+        'forecast_en_test': 'Thu-Sat:Sunny',
+        'forecast_fr_test': 'Jeu-Sam:Ensoleillé'
+    }]
+
+def test_different_forecast_all_days(httpserver, forecaster):
+    httpserver.expect_request('/timelines').respond_with_json(make_response([
+        forecast_sunny_c, forecast_rain, forecast_flood_and_rain_a
+    ]))
+    assert list(forecaster.run(locations_csv)) == [{
+        'latitude': '0.0',
+        'longitude': '0.0',
+        'forecast_en_test': 'Sat:Sunny. Sun:Heavy rain. Mon:Significant flooding possible',
+        'forecast_fr_test': 'Sam:Ensoleillé. Dim:Forte pluie. Lun:Inondation considérable possible'
+    }]
+
+def test_multiple_groups(httpserver, forecaster):
+    httpserver.expect_request('/timelines').respond_with_json(make_response([
+        forecast_sunny_a,
+        forecast_sunny_b,
+        forecast_sunny_c,
+        forecast_rain,
+        forecast_flood_and_rain_a,
+        forecast_flood_and_rain_b
+    ]))
+    assert list(forecaster.run(locations_csv)) == [{
+        'latitude': '0.0',
+        'longitude': '0.0',
+        'forecast_en_test': 'Thu-Sat:Sunny. Sun:Heavy rain. Mon-Tue:Significant flooding possible',
+        'forecast_fr_test': 'Jeu-Sam:Ensoleillé. Dim:Forte pluie. Lun-Mar:Inondation considérable possible'
+    }]
