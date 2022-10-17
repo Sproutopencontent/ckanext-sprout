@@ -1,9 +1,9 @@
 from ckan.common import config
 from ckan.plugins import toolkit
-from ckan.views.resource import download
+import codecs
 from datetime import datetime
 import flask
-import os
+import requests
 from .forecaster import Forecaster
 
 forecaster_blueprint = flask.Blueprint('forecaster', __name__)
@@ -11,16 +11,29 @@ forecaster_blueprint = flask.Blueprint('forecaster', __name__)
 def new_forecast(id):
     dataset = toolkit.get_action('package_show')(None, {'id': id})
     api_key = config.get('ckan.sprout.tomorrow_api_key', None)
-    forecaster = Forecaster(api_key=api_key, languages=dataset['languages'])
+    forecaster = Forecaster(api_key=api_key, languages=dataset['language'])
     create_date = datetime.utcnow().isoformat(sep=" ", timespec='minutes')
 
-    # TODO: store the locations as a resource and load them here
-    forecasts = forecaster.run(['latitude,longitude', '-0.344979,36.530516', '-0.27243,36.374660'])
+    # TODO: produce a proper error message if the location_resource can't be found or isn't set
+    locations_resource = toolkit.get_action('resource_show')(None, {
+        'id': dataset['locations_resource_id']
+    })
+
+    # TODO: handle failures here gracefully too
+    # Pass along the cookies from this request so we stay authenticated
+    locations_response = requests.get(
+        locations_resource['url'],
+        cookies=toolkit.request.cookies,
+        stream=True
+    )
+    forecasts = forecaster.run(codecs.iterdecode(locations_response.iter_lines(), 'utf-8'))
 
     # TODO: can we just replace the resource_create action for this package type?
     resource = toolkit.get_action('resource_create')(None, {
         'package_id': id,
-        'name': create_date
+        'name': f'{create_date} {toolkit._("Forecasts")}',
+        'format': 'csv',
+        'language': dataset['language']
     })
     datastore_create = toolkit.get_action('datastore_create')
 
