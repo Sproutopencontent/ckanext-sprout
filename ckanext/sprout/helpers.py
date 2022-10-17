@@ -2,7 +2,7 @@ from ckan import model
 import ckan.plugins as p
 from ckan.common import c
 import ckan.lib.uploader as uploader
-from ckan.lib.helpers import _link_active
+from ckan.lib.helpers import _link_active, is_url, url_for
 
 
 def get_featured_pages(limit=3):
@@ -18,6 +18,14 @@ def resource_display_size(resource_dict_size):
     resource_size = resource_dict_size.get('size', None)
     resource_size_string = '0' if resource_size is None else '{}'.format(resource_size)
     return resource_size_string
+
+
+def resource_download_url(res):
+    if is_url(res.url):
+        return res.url
+    if res.datastore_active:
+        return url_for('datastore.dump', resource_id=res.id, bom=True)
+    return None
 
 
 def resource_max_size():

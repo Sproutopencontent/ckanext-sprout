@@ -38,6 +38,8 @@ class SproutPlugin(plugins.SingletonPlugin):
                 h.get_featured_pages,
             'resource_display_size':
                 h.resource_display_size,
+            'resource_download_url':
+                h.resource_download_url,
             'resource_max_size':
                 h.resource_max_size,
             'sprout_link_active':
