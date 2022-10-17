@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block content_action %}
+  {% if pkg.type == 'weather_dataset' and h.check_access('package_update', {'id': pkg.id}) %}
+    {% link_for _('New Forecast'), named_route='forecaster.new_forecast', id=pkg.id, class_='btn btn-light', icon='plus-square' %}
+  {% endif %}
+  {{ super() }}
+{% endblock %}
