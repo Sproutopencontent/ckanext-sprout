@@ -2,7 +2,7 @@
 
 {% block content_action %}
   {% if pkg.type == 'weatherset' and h.check_access('package_update', {'id': pkg.id}) %}
-    {% link_for _('New Forecast'), named_route='forecaster.new_forecast', id=pkg.id, class_='btn btn-light', icon='plus-square' %}
+    {% link_for _('New Forecast'), named_route='forecaster.new_forecast', id=pkg.id, class_='btn btn-default', icon='plus-square' %}
   {% endif %}
   {{ super() }}
 {% endblock %}
