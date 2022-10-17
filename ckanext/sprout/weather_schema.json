@@ -39,6 +39,10 @@
                 {
                     "label": "French",
                     "value": "FR"
+                },
+                {
+                    "label": "Kiswahili",
+                    "value": "SW"
                 }
             ]
         },
@@ -85,6 +89,10 @@
                 {
                     "label": "French",
                     "value": "FR"
+                },
+                {
+                    "label": "Kiswahili",
+                    "value": "SW"
                 }
             ]
         }
