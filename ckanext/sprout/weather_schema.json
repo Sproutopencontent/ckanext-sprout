@@ -1,6 +1,6 @@
 {
     "scheming_version": 2,
-    "dataset_type": "weather",
+    "dataset_type": "weather_dataset",
     "about": "Weather Datasets",
     "about_url": "",
     "dataset_fields": [
