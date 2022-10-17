@@ -31,7 +31,7 @@ def new_forecast(id):
     # TODO: can we just replace the resource_create action for this package type?
     resource = toolkit.get_action('resource_create')(None, {
         'package_id': id,
-        'name': f'{create_date} {toolkit._("Forecasts")}',
+        'name': f'{toolkit._("Forecasts")} {create_date}',
         'format': 'csv',
         'language': dataset['language']
     })
