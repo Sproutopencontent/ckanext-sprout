@@ -20,7 +20,7 @@ class Forecaster:
         self.api_url = api_url
         self.default_api_params = {
             'apikey': api_key,
-            'timezone': timezone
+            'timezone': f'{timezone}'
         }
         self.strings = {
             lang.lower(): StringLookup(f'{my_dir}/lang/{lang.lower()}.json')

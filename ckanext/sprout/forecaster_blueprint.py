@@ -1,4 +1,5 @@
 from ckan.common import config
+from ckan.lib.helpers import get_display_timezone
 from ckan.plugins import toolkit
 import codecs
 from datetime import datetime
@@ -9,10 +10,11 @@ from .forecaster import Forecaster
 forecaster_blueprint = flask.Blueprint('forecaster', __name__)
 
 def new_forecast(id):
+    tz = get_display_timezone()
     dataset = toolkit.get_action('package_show')(None, {'id': id})
     api_key = config.get('ckan.sprout.tomorrow_api_key', None)
-    forecaster = Forecaster(api_key=api_key, languages=dataset['language'])
-    create_date = datetime.utcnow().isoformat(sep=" ", timespec='minutes')
+    forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
+    create_date = datetime.utcnow().isoformat(sep=' ', timespec='minutes', tzinfo=tz)
 
     # TODO: produce a proper error message if the location_resource can't be found or isn't set
     locations_resource = toolkit.get_action('resource_show')(None, {
