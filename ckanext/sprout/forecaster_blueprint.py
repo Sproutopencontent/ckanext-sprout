@@ -31,6 +31,12 @@ def new_forecast(id):
             'force': True
         })
 
+    toolkit.get_action('resource_create_default_resource_views')(None, {
+        'resource': resource,
+        'package': dataset,
+        'create_datastore_views': True
+    })
+
     return toolkit.redirect_to(f'/forecast/{id}/resource/{resource["id"]}')
 
 
