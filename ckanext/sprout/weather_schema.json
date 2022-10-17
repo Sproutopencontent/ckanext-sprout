@@ -1,14 +1,14 @@
 {
     "scheming_version": 2,
-    "dataset_type": "forecast",
-    "about": "Weather Forecasts",
+    "dataset_type": "weather",
+    "about": "Weather Datasets",
     "about_url": "",
     "dataset_fields": [
         {
             "field_name": "title",
             "label": "Title",
             "preset": "title",
-            "form_placeholder": "Title of the forecast dataset"
+            "form_placeholder": "Title of the weather dataset"
         },
         {
             "field_name": "name",
@@ -57,7 +57,7 @@
         {
             "field_name": "name",
             "label": "Name",
-            "form_placeholder": "eg. 2022-10-12 Forecasts",
+            "form_placeholder": "eg. Forecasts 2022-10-12",
             "required": true
         },
         {

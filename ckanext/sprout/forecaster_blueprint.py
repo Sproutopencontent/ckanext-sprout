@@ -50,7 +50,7 @@ def new_forecast(id):
         'create_datastore_views': True
     })
 
-    return toolkit.redirect_to(f'/forecast/{id}/resource/{resource["id"]}')
+    return toolkit.redirect_to('resource.read', id=id, resource_id=resource["id"])
 
 
-forecaster_blueprint.add_url_rule('/forecast/<id>/new', view_func=new_forecast)
+forecaster_blueprint.add_url_rule('/weather/<id>/resource/new-forecast', view_func=new_forecast)
