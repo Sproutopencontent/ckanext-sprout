@@ -45,8 +45,7 @@
         {
             "field_name": "locations_resource_id",
             "label": "Resource ID of Locations CSV file",
-            "required": false,
-            "validators": "scheming_required resource_id_exists"
+            "validators": "ignore_empty resource_id_exists"
         }
     ],
     "resource_fields": [
