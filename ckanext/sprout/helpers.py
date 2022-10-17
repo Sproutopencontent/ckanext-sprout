@@ -21,10 +21,10 @@ def resource_display_size(resource_dict_size):
 
 
 def resource_download_url(res):
-    if is_url(res.url):
-        return res.url
-    if res.datastore_active:
-        return url_for('datastore.dump', resource_id=res.id, bom=True)
+    if 'url' in res and is_url(res['url']):
+        return res['url']
+    if res.get('datastore_active', False):
+        return url_for('datastore.dump', resource_id=res['id'], bom=True)
     return None
 
 
