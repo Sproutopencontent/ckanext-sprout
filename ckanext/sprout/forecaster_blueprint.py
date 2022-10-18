@@ -1,5 +1,5 @@
 from ckan.common import config
-from ckan.lib.helpers import get_display_timezone
+from ckan.lib.helpers import date_str_to_datetime, get_display_timezone, render_datetime
 from ckan.plugins import toolkit
 import codecs
 from datetime import datetime, timedelta
@@ -20,8 +20,8 @@ def _get_most_recent_forecast(dataset):
         elif most_recent_forecast is None:
             most_recent_forecast = res
         else:
-            created_at = datetime.fromisoformat(res['created'])
-            most_recent_created_at = datetime.fromisoformat(most_recent_forecast['created'])
+            created_at = date_str_to_datetime(res['created'])
+            most_recent_created_at = date_str_to_datetime(most_recent_forecast['created'])
             if created_at > most_recent_created_at:
                 most_recent_forecast = res
 
@@ -33,14 +33,14 @@ def new_forecast(id):
     api_key = config.get('ckan.sprout.tomorrow_api_key', None)
     forecast_lifetime_h = toolkit.asint(config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
     forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
+    # CKAN's internal timestamps are always UTC, so that's what we need here for comparison
     now = datetime.utcnow()
-    create_date = now.isoformat(sep=' ', timespec='minutes', tzinfo=tz)
     most_recent_forecast = _get_most_recent_forecast(dataset)
 
     # Look to see if the most recent forecast is still "live" (based on the lifetime config value).
     # If one already exists, just redirect there.
     if most_recent_forecast is not None:
-        most_recent_created_at = datetime.fromisoformat(most_recent_forecast['created'])
+        most_recent_created_at = date_str_to_datetime(most_recent_forecast['created'])
         if now - most_recent_created_at < timedelta(hours=forecast_lifetime_h):
             # TODO: show a message on redirect to existing forecast to draw attention to the fact
             # that we didn't generate a new one
@@ -66,7 +66,7 @@ def new_forecast(id):
 
     resource = toolkit.get_action('resource_create')(None, {
         'package_id': id,
-        'name': f'{toolkit._("Forecasts")} {create_date}',
+        'name': f'{toolkit._("Forecasts")} {render_datetime(now, with_hours=True)}',
         'format': 'csv',
         'language': dataset['language']
     })
