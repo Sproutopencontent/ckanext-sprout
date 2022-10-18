@@ -31,7 +31,7 @@ def new_forecast(id):
     tz = get_display_timezone()
     dataset = toolkit.get_action('package_show')(None, {'id': id})
     api_key = config.get('ckan.sprout.tomorrow_api_key', None)
-    forecast_lifetime_h = config.get('ckan.sprout.forecast_lifetime_in_hours', 0)
+    forecast_lifetime_h = toolkit.asint(config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
     forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
     now = datetime.utcnow()
     create_date = now.isoformat(sep=' ', timespec='minutes', tzinfo=tz)
