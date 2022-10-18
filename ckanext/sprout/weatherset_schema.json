@@ -1,0 +1,100 @@
+{
+    "scheming_version": 2,
+    "dataset_type": "weatherset",
+    "about": "Weather Datasets",
+    "about_url": "",
+    "dataset_fields": [
+        {
+            "field_name": "title",
+            "label": "Title",
+            "preset": "title",
+            "form_placeholder": "Title of the weather dataset"
+        },
+        {
+            "field_name": "name",
+            "label": "URL",
+            "preset": "dataset_slug"
+        },
+        {
+            "field_name": "notes",
+            "label": "Description",
+            "form_snippet": "markdown.html",
+            "form_placeholder": "eg. Some useful notes about the data"
+        },
+        {
+            "field_name": "owner_org",
+            "label": "Organization",
+            "preset": "dataset_organization"
+        },
+        {
+            "field_name": "language",
+            "label": "Languages",
+            "preset": "multiple_select",
+            "required": true,
+            "choices": [
+                {
+                    "label": "English",
+                    "value": "EN"
+                },
+                {
+                    "label": "French",
+                    "value": "FR"
+                },
+                {
+                    "label": "Kiswahili",
+                    "value": "SW"
+                }
+            ]
+        },
+        {
+            "field_name": "locations_resource_id",
+            "label": "Resource ID of Locations CSV file",
+            "validators": "ignore_empty resource_id_exists"
+        }
+    ],
+    "resource_fields": [
+        {
+            "field_name": "url",
+            "label": "URL",
+            "preset": "resource_url_upload"
+        },
+        {
+            "field_name": "name",
+            "label": "Name",
+            "form_placeholder": "eg. Forecasts 2022-10-12",
+            "required": true
+        },
+        {
+            "field_name": "description",
+            "label": "Description",
+            "form_snippet": "markdown.html",
+            "form_placeholder": "Some useful notes about the data"
+        },
+        {
+            "field_name": "format",
+            "label": "Format",
+            "preset": "resource_format_autocomplete"
+        },
+        {
+
+            "field_name": "language",
+            "required": true,
+            "label": "Languages",
+            "preset": "multiple_select",
+            "choices": [
+                {
+                    "label": "English",
+                    "value": "EN"
+                },
+                {
+                    "label": "French",
+                    "value": "FR"
+                },
+                {
+                    "label": "Kiswahili",
+                    "value": "SW"
+                }
+            ]
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.sprout.sprout_blueprint import blueprint
+from ckanext.sprout.forecaster_blueprint import forecaster_blueprint
 from ckanext.sprout import helpers as h
 from ckanext.pages.interfaces import IPagesSchema
 
@@ -37,6 +38,8 @@ class SproutPlugin(plugins.SingletonPlugin):
                 h.get_featured_pages,
             'resource_display_size':
                 h.resource_display_size,
+            'resource_download_url':
+                h.resource_download_url,
             'resource_max_size':
                 h.resource_max_size,
             'sprout_link_active':
@@ -46,4 +49,4 @@ class SproutPlugin(plugins.SingletonPlugin):
     # IBlueprint
 
     def get_blueprint(self):
-        return [blueprint]
+        return [blueprint, forecaster_blueprint]

@@ -1,0 +1,43 @@
+{
+  "day": {
+    "0": "Jumatatu",
+    "1": "Jumanne",
+    "2": "Jumatano",
+    "3": "Alhamisi",
+    "4": "Ijumaa",
+    "5": "Jumamosi",
+    "6": "Jumapili"
+  },
+  "floodIndex": {
+    "1": "Uwezekano wa mafuriko madogo",
+    "2": "Uwezekano wa mafuriko ya wastani",
+    "3": "Uwezekano wa mafuriko",
+    "4": "Uwezekano wa mafuriko ya kiwango cha juu",
+    "5": "Uwezekano mkubwa wa mafuriko ya kiwango cha juu"
+  },
+  "weatherCode": {
+    "1000": "Siku yenye jua",
+    "1100": "Siku yenye jua",
+    "1101": "Siku yenye jua na mawingu kiasi",
+    "1102": "Mawingu bila mvua",
+    "1001": "Mawingu bila mvua",
+    "2000": "Ukungu",
+    "2100": "Ukungu mwepesi",
+    "4000": "Mvua ya manyunyu",
+    "4001": "Mvua",
+    "4200": "Mvua nyepesi",
+    "4201": "Mvua kubwa",
+    "5000": "Theluji",
+    "5001": "Theluji kwa wepesi",
+    "5100": "Theluji kwa wepesi",
+    "5101": "Theluji kwa wingi",
+    "6000": "Baridi kali ikiandamana na mvua ya manyunyu",
+    "6001": "Baridi kali ikiandamana na mvua",
+    "6200": "Baridi kali ikiandamana na mvua nyepesi",
+    "6201": "Baridi kali ikiandamana na mvua kubwa",
+    "7000": "Barafu",
+    "7101": "Barafu nzito",
+    "7102": "Barafu nyepesi",
+    "8000": "Mvua ikiandamana na ngurumo za radi"
+  }
+}

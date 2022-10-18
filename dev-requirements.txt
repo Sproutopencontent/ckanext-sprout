@@ -1,1 +1,3 @@
-pytest-ckan
+markupsafe==2.0.1
+pytest-httpserver
+werkzeug==2.0.3
