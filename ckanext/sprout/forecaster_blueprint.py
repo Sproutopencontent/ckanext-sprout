@@ -40,14 +40,14 @@ def new_forecast(id):
     if most_recent_forecast is not None:
         most_recent_created_at = h.date_str_to_datetime(most_recent_forecast['created'])
         if now - most_recent_created_at < timedelta(hours=forecast_lifetime_h):
-            h.flash_notice(toolkit._('Showing you the latest forecast, which is still fresh'))
+            h.flash_notice(toolkit._('Showing you the latest forecast, which is still fresh.'))
             return toolkit.redirect_to(
                 'weatherset_resource.read',
                 id=id,
                 resource_id=most_recent_forecast['id']
             )
 
-    if not dataset['locations_resource_id']:
+    if 'locations_resource_id' not in dataset or not dataset['locations_resource_id']:
         h.flash_error(toolkit._('Please set locations_resource_id before generating a forecast'))
         return toolkit.redirect_to('weatherset.read', id=id)
 
