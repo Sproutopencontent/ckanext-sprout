@@ -1,9 +1,11 @@
 from ckan.common import config
+from ckan.lib import jobs
 from ckan.lib.helpers import date_str_to_datetime, get_display_timezone, render_datetime
 from ckan.plugins import toolkit
 import codecs
 from datetime import datetime, timedelta
 import flask
+import logging
 import requests
 from .forecaster import Forecaster
 
@@ -28,11 +30,8 @@ def _get_most_recent_forecast(dataset):
     return most_recent_forecast
 
 def new_forecast(id):
-    tz = get_display_timezone()
     dataset = toolkit.get_action('package_show')(None, {'id': id})
-    api_key = config.get('ckan.sprout.tomorrow_api_key', None)
     forecast_lifetime_h = toolkit.asint(config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
-    forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
     # CKAN's internal timestamps are always UTC, so that's what we need here for comparison
     now = datetime.utcnow()
     most_recent_forecast = _get_most_recent_forecast(dataset)
@@ -50,6 +49,21 @@ def new_forecast(id):
                 resource_id=most_recent_forecast['id']
             )
 
+    resource = toolkit.get_action('resource_create')(None, {
+        'package_id': dataset['id'],
+        'name': f'{toolkit._("Forecasts")} {render_datetime(now, with_hours=True)}',
+        'format': 'csv',
+        'language': dataset['language']
+    })
+
+    jobs.enqueue(forecaster_job, [dataset, resource], title='forecaster', timeout=1200)
+    return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
+
+def forecaster_job(dataset, resource):
+    api_key = config.get('ckan.sprout.tomorrow_api_key', None)
+    # TODO: this doesn't seem to be returning the same thing the helper function uses
+    tz = get_display_timezone()
+    forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
     # TODO: produce a proper error message if the location_resource can't be found or isn't set
     locations_resource = toolkit.get_action('resource_show')(None, {
         'id': dataset['locations_resource_id']
@@ -62,14 +76,9 @@ def new_forecast(id):
         cookies=toolkit.request.cookies,
         stream=True
     )
+
     forecasts = forecaster.run(codecs.iterdecode(locations_response.iter_lines(), 'utf-8'))
 
-    resource = toolkit.get_action('resource_create')(None, {
-        'package_id': id,
-        'name': f'{toolkit._("Forecasts")} {render_datetime(now, with_hours=True)}',
-        'format': 'csv',
-        'language': dataset['language']
-    })
     datastore_create = toolkit.get_action('datastore_create')
 
     for forecast in forecasts:
@@ -88,7 +97,8 @@ def new_forecast(id):
         'create_datastore_views': True
     })
 
-    return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
+    logging.info(f'Forecaster complete for dataset {dataset["id"]} resource {resource["id"]}')
+
 
 
 forecaster_blueprint.add_url_rule('/weatherset/<id>/resource/new_forecast', view_func=new_forecast)
