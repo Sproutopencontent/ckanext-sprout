@@ -1,5 +1,4 @@
 from ckan.common import config
-from ckan.lib import jobs
 from ckan.lib.helpers import date_str_to_datetime, get_display_timezone, render_datetime
 from ckan.plugins import toolkit
 import codecs
@@ -56,7 +55,7 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
-    jobs.enqueue(forecaster_job, [dataset, resource], title='forecaster', timeout=1200)
+    toolkit.enqueue_job(forecaster_job, [dataset, resource], title='forecaster', rq_kwargs={'timeout': 1200})
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
 def forecaster_job(dataset, resource):
