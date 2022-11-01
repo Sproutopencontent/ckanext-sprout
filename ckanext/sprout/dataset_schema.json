@@ -98,7 +98,19 @@
                 {
                     "label": "Kiswahili",
                     "value": "SW"
-                }
+                },
+                {
+                    "label": "French",
+                    "value": "FR"
+                },
+                {
+                    "label": "Amharic",
+                    "value": "AM"
+                }, 
+                {
+                    "label": "Luo",
+                    "value": "LU"
+                } 
             ]
         }
     ]
