@@ -63,6 +63,7 @@ def new_forecast(id):
         # Pass along the cookies from this request so we stay authenticated
         [dataset, resource, toolkit.request.cookies],
         title='forecaster',
+        queue='priority',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
