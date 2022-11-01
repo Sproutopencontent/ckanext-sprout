@@ -1,4 +1,3 @@
-from ckan.common import config
 import ckan.lib.helpers as h
 from ckan.plugins import toolkit
 import codecs
@@ -30,7 +29,7 @@ def _get_most_recent_forecast(dataset):
 
 def new_forecast(id):
     dataset = toolkit.get_action('package_show')(None, {'id': id})
-    forecast_lifetime_h = toolkit.asint(config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
+    forecast_lifetime_h = toolkit.asint(toolkit.config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
     # CKAN's internal timestamps are always UTC, so that's what we need here for comparison
     now = datetime.utcnow()
     most_recent_forecast = _get_most_recent_forecast(dataset)
@@ -72,7 +71,7 @@ def forecaster_job(dataset, resource, cookies):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
     try:
-        api_key = config.get('ckan.sprout.tomorrow_api_key', None)
+        api_key = toolkit.config.get('ckan.sprout.tomorrow_api_key', None)
         # TODO: this doesn't seem to be returning the same thing the helper function uses
         tz = h.get_display_timezone()
         forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
