@@ -59,7 +59,7 @@ def new_forecast(id):
 
     # Before we start the background job, make sure the user has access to update this package.
     # check_access will throw an exception if they don't.
-    toolkit.check_access('package_update', None, {'id': id})
+    toolkit.check_access('package_update', {}, {'id': id})
 
     toolkit.enqueue_job(
         forecaster_job,
