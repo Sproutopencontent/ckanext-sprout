@@ -57,27 +57,21 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
-    # We need to call get_action() from here, if we call it inside the job, the context is gone,
-    # and we will get NotAuthorized errors. Pass all the needed actions in as a dict.
-    job_actions = {
-        name: toolkit.get_action(name) for name in [
-            'resource_show',
-            'datastore_create',
-            'resource_create_default_resource_views'
-        ]
-    }
+    # This is a hack to pre-populate the context object so it can be passed to the background job
+    context = {}
+    toolkit.check_access('datastore_create', context)
 
     toolkit.enqueue_job(
         forecaster_job,
         # Pass along the cookies from this request so we stay authenticated
-        [dataset, resource, toolkit.request.cookies, job_actions],
+        [dataset, resource, toolkit.request.cookies, context],
         title='forecaster',
         queue='priority',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
-def forecaster_job(dataset, resource, cookies, actions):
+def forecaster_job(dataset, resource, cookies, context):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
     try:
@@ -86,7 +80,8 @@ def forecaster_job(dataset, resource, cookies, actions):
         tz = h.get_display_timezone()
         forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
         # TODO: produce a user-visible error message if the location_resource can't be found
-        locations_resource = actions['resource_show'](None, {
+        # We have to pass a copy of the context dictionary because the action may modify it
+        locations_resource = toolkit.get_action('resource_show')(context.copy(), {
             'id': dataset['locations_resource_id']
         })
 
@@ -101,7 +96,8 @@ def forecaster_job(dataset, resource, cookies, actions):
 
         for forecast in forecasts:
             # Add one row at a time so we don't have to store everything in memory
-            actions['datastore_create'](None, {
+            # We have to pass a copy of the context dictionary because the action may modify it
+            toolkit.get_action('datastore_create')(context.copy(), {
                 'resource_id': resource['id'],
                 'records': [forecast],
                 'force': True
@@ -109,7 +105,8 @@ def forecaster_job(dataset, resource, cookies, actions):
 
         # Add the resource views (like the data preview), they don't get added to empty resources on
         # creation
-        actions['resource_create_default_resource_views'](None, {
+        # We have to pass a copy of the context dictionary because the action may modify it
+        toolkit.get_action('resource_create_default_resource_views')(context.copy(), {
             'resource': resource,
             'package': dataset,
             'create_datastore_views': True
