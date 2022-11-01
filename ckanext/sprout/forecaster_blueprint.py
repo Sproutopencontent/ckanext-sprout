@@ -57,23 +57,28 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
-    # This is a hack to pre-populate the context object so it can be passed to the background job
-    context = {}
-    toolkit.check_access('datastore_create', context)
+    # Before we start the background job, make sure the user has access to update this package.
+    # check_access will throw an exception if they don't.
+    toolkit.check_access('package_update', None, {'id': id})
 
     toolkit.enqueue_job(
         forecaster_job,
         # Pass along the cookies from this request so we stay authenticated
-        [dataset, resource, toolkit.request.cookies, context],
+        [dataset, resource, toolkit.request.cookies],
         title='forecaster',
         queue='priority',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
-def forecaster_job(dataset, resource, cookies, context):
+def forecaster_job(dataset, resource, cookies):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
+
+    # This seems to be the only way to get the actions to work in a background job
+    from ckan import model
+    context = {'model': model, 'ignore_auth': True, 'session': model.Session}
+
     try:
         api_key = toolkit.config.get('ckan.sprout.tomorrow_api_key', None)
         # TODO: this doesn't seem to be returning the same thing the helper function uses
