@@ -57,17 +57,27 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
+    # We need to call get_action() from here, if we call it inside the job, the context is gone,
+    # and we will get NotAuthorized errors. Pass all the needed actions in as a dict.
+    job_actions = {
+        name: toolkit.get_action(name) for name in [
+            'resource_show',
+            'datastore_create',
+            'resource_create_default_resource_views'
+        ]
+    }
+
     toolkit.enqueue_job(
         forecaster_job,
         # Pass along the cookies from this request so we stay authenticated
-        [dataset, resource, toolkit.request.cookies],
+        [dataset, resource, toolkit.request.cookies, job_actions],
         title='forecaster',
         queue='priority',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
-def forecaster_job(dataset, resource, cookies):
+def forecaster_job(dataset, resource, cookies, actions):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
     try:
@@ -76,7 +86,7 @@ def forecaster_job(dataset, resource, cookies):
         tz = h.get_display_timezone()
         forecaster = Forecaster(api_key=api_key, languages=dataset['language'], timezone=tz)
         # TODO: produce a user-visible error message if the location_resource can't be found
-        locations_resource = toolkit.get_action('resource_show')(None, {
+        locations_resource = actions['resource_show'](None, {
             'id': dataset['locations_resource_id']
         })
 
@@ -89,11 +99,9 @@ def forecaster_job(dataset, resource, cookies):
 
         forecasts = forecaster.run(codecs.iterdecode(locations_response.iter_lines(), 'utf-8'))
 
-        datastore_create = toolkit.get_action('datastore_create')
-
         for forecast in forecasts:
             # Add one row at a time so we don't have to store everything in memory
-            datastore_create(None, {
+            actions['datastore_create'](None, {
                 'resource_id': resource['id'],
                 'records': [forecast],
                 'force': True
@@ -101,7 +109,7 @@ def forecaster_job(dataset, resource, cookies):
 
         # Add the resource views (like the data preview), they don't get added to empty resources on
         # creation
-        toolkit.get_action('resource_create_default_resource_views')(None, {
+        actions['resource_create_default_resource_views'](None, {
             'resource': resource,
             'package': dataset,
             'create_datastore_views': True
