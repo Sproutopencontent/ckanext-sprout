@@ -68,6 +68,7 @@ def new_forecast(id):
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
 def forecaster_job(dataset, resource, cookies):
+    logging.info('Forecaster starting')
     try:
         api_key = config.get('ckan.sprout.tomorrow_api_key', None)
         # TODO: this doesn't seem to be returning the same thing the helper function uses
