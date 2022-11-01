@@ -69,7 +69,8 @@ def new_forecast(id):
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
 def forecaster_job(dataset, resource, cookies):
-    logging.info('Forecaster starting')
+    log = logging.getLogger(__name__)
+    log.info('Forecaster starting')
     try:
         api_key = config.get('ckan.sprout.tomorrow_api_key', None)
         # TODO: this doesn't seem to be returning the same thing the helper function uses
@@ -107,11 +108,11 @@ def forecaster_job(dataset, resource, cookies):
             'create_datastore_views': True
         })
 
-        logging.info(f'Forecasts complete for dataset {dataset["id"]} resource {resource["id"]}')
+        log.info(f'Forecasts complete for dataset {dataset["id"]} resource {resource["id"]}')
     except requests.exceptions.RequestException:
-        logging.exception('Could not fetch locations resource')
+        log.exception('Could not fetch locations resource')
     except Exception:
-        logging.exception('Unexpected error')
+        log.exception('Unexpected error')
 
 
 
