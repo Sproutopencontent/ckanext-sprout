@@ -14,7 +14,7 @@ def _get_most_recent_forecast(dataset):
     most_recent_forecast = None
 
     for res in dataset['resources']:
-        if res['id'] == dataset['locations_resource_id']:
+        if 'locations_resource_id' in dataset and res['id'] == dataset['locations_resource_id']:
             # TODO: it would be nice to have some explicit field indicating this is a forecast
             # Right now we're just skipping the locations resource and considering everything else
             continue
