@@ -44,12 +44,14 @@ class Forecaster:
                 params=params,
                 timeout=10.0
             )
+            response.raise_for_status()
             response_body = response.json()
             logging.debug(json.dumps(response_body, indent=2))
             # Return just the data
             return response_body['data']['timelines'][0]['intervals']
         except requests.exceptions.RequestException:
             logging.exception('Request error')
+            raise
 
     def summarize_forecast(self, forecast, lang):
         flood_index = forecast['values'].get('floodIndex', 0)
