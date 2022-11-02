@@ -11,6 +11,7 @@ class SproutPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.ITemplateHelpers)
     plugins.implements(IPagesSchema)
     plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.IResourceView)
 
     # IConfigurer
 
@@ -50,3 +51,26 @@ class SproutPlugin(plugins.SingletonPlugin):
 
     def get_blueprint(self):
         return [blueprint, forecaster_blueprint]
+
+    # IResourceView
+    # This resource view is only used internally by the forecaster
+
+    def info(self):
+        return {
+            'name': 'forecast_loading_view',
+            'title': toolkit._('Forecast Loading'),
+            'default_title': toolkit._('Loading')
+        }
+
+    def can_view(self, data_dict):
+        # TODO: should probably filter on forecast resources too (once we can distinguish them)
+        return data_dict['package']['type'] == 'weatherset'
+
+    def setup_template_variables(self, context, data_dict):
+        return {}
+
+    def view_template(self, context, data_dict):
+        return 'views/forecast_loading_view.html'
+
+    def form_template(self, context, data_dict):
+        return 'views/forecast_loading_view_form.html'

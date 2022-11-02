@@ -50,6 +50,10 @@ def new_forecast(id):
         h.flash_error(toolkit._('Please set locations_resource_id before generating a forecast'))
         return toolkit.redirect_to('weatherset.read', id=id)
 
+    # Before we start the background job, make sure the user has access to update this package.
+    # check_access will throw an exception if they don't.
+    toolkit.check_access('package_update', {}, {'id': id})
+
     resource = toolkit.get_action('resource_create')(None, {
         'package_id': dataset['id'],
         'name': f'{toolkit._("Forecasts")} {h.render_datetime(now, with_hours=True)}',
@@ -57,21 +61,22 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
-    # Before we start the background job, make sure the user has access to update this package.
-    # check_access will throw an exception if they don't.
-    toolkit.check_access('package_update', {}, {'id': id})
+    # Add the "loading" view so we can indicate to the user if the background job is still running
+    loading_view = toolkit.get_action('resource_view_create')(None, {
+        'resource_id': resource['id'],
+        'type': 'forecast_loading_view'
+    })
 
     toolkit.enqueue_job(
         forecaster_job,
         # Pass along the cookies from this request so we stay authenticated
-        [dataset, resource, toolkit.request.cookies],
+        [dataset, resource, loading_view, toolkit.request.cookies],
         title='forecaster',
-        queue='priority',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
-def forecaster_job(dataset, resource, cookies):
+def forecaster_job(dataset, resource, loading_view, cookies):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
 
@@ -108,9 +113,11 @@ def forecaster_job(dataset, resource, cookies):
                 'force': True
             })
 
-        # Add the resource views (like the data preview), they don't get added to empty resources on
-        # creation
+        # Remove the loading view and add the normal resource views (like the data preview), they
+        # don't get added to empty resources on creation. This also signals to the user that the
+        # generation process is complete.
         # We have to pass a copy of the context dictionary because the action may modify it
+        toolkit.get_action('resource_view_delete')(context.copy(), {'id': loading_view['id']})
         toolkit.get_action('resource_create_default_resource_views')(context.copy(), {
             'resource': resource,
             'package': dataset,
