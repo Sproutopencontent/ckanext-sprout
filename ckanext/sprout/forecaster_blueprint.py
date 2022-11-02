@@ -64,6 +64,7 @@ def new_forecast(id):
     # Add the "loading" view so we can indicate to the user if the background job is still running
     loading_view = toolkit.get_action('resource_view_create')(None, {
         'resource_id': resource['id'],
+        'title': toolkit._('Loading'),
         'view_type': 'forecast_loading_view'
     })
 
