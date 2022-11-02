@@ -61,23 +61,16 @@ def new_forecast(id):
         'language': dataset['language']
     })
 
-    # Add the "loading" view so we can indicate to the user if the background job is still running
-    loading_view = toolkit.get_action('resource_view_create')(None, {
-        'resource_id': resource['id'],
-        'title': toolkit._('Loading'),
-        'view_type': 'forecast_loading_view'
-    })
-
     toolkit.enqueue_job(
         forecaster_job,
         # Pass along the cookies from this request so we stay authenticated
-        [dataset, resource, loading_view, toolkit.request.cookies],
+        [dataset, resource, toolkit.request.cookies],
         title='forecaster',
         rq_kwargs={'timeout': 1200}
     )
     return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
 
-def forecaster_job(dataset, resource, loading_view, cookies):
+def forecaster_job(dataset, resource, cookies):
     log = logging.getLogger(__name__)
     log.info('Forecaster starting')
 
@@ -114,11 +107,10 @@ def forecaster_job(dataset, resource, loading_view, cookies):
                 'force': True
             })
 
-        # Remove the loading view and add the normal resource views (like the data preview), they
-        # don't get added to empty resources on creation. This also signals to the user that the
-        # generation process is complete.
+        # Add the normal resource views (like the data preview), they don't get added to empty
+        # resources on creation. This also signals to the user that the generation process is
+        # complete.
         # We have to pass a copy of the context dictionary because the action may modify it
-        toolkit.get_action('resource_view_delete')(context.copy(), {'id': loading_view['id']})
         toolkit.get_action('resource_create_default_resource_views')(context.copy(), {
             'resource': resource,
             'package': dataset,
