@@ -25,6 +25,13 @@ def _get_most_recent_forecast(dataset):
 
     return most_recent_forecast
 
+def _update_forecast_status(context, resource_id, new_status):
+    # This is essentially a re-implementation of resource_patch since resource_patch does not
+    # support the ignore_auth context parameter.
+    resource = toolkit.get_action('resource_show')(context.copy(), {'id': resource_id})
+    resource['forecast_status'] = new_status
+    toolkit.get_action('resource_update')(context.copy(), resource)
+
 def new_forecast(id):
     dataset = toolkit.get_action('package_show')(None, {'id': id})
     forecast_lifetime_h = toolkit.asint(toolkit.config.get('ckan.sprout.forecast_lifetime_in_hours', 0))
@@ -69,7 +76,7 @@ def new_forecast(id):
         title='forecaster',
         rq_kwargs={'timeout': 1800}
     )
-    return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource["id"])
+    return toolkit.redirect_to('weatherset_resource.read', id=id, resource_id=resource['id'])
 
 def forecaster_job(dataset, resource, cookies):
     log = logging.getLogger(__name__)
@@ -77,7 +84,12 @@ def forecaster_job(dataset, resource, cookies):
 
     # This seems to be the only way to get the actions to work in a background job
     from ckan import model
-    context = {'model': model, 'ignore_auth': True, 'session': model.Session}
+    context = {
+        'model': model,
+        'session': model.Session,
+        'ignore_auth': True,
+        'user': '',
+    }
 
     try:
         api_key = toolkit.config.get('ckan.sprout.tomorrow_api_key', None)
@@ -108,17 +120,11 @@ def forecaster_job(dataset, resource, cookies):
                 'force': True
             })
 
-        toolkit.get_action('resource_patch')(context.copy(), {
-            'id': resource['id'],
-            'forecast_status': 'COMPLETE'
-        })
+        _update_forecast_status(context, resource['id'], 'COMPLETE')
         log.info(f'Forecasts complete for dataset {dataset["id"]} resource {resource["id"]}')
     except Exception:
         log.exception('Unexpected error')
-        toolkit.get_action('resource_patch')(context.copy(), {
-            'id': resource['id'],
-            'forecast_status': 'PARTIAL'
-        })
+        _update_forecast_status(context, resource['id'], 'PARTIAL')
         raise
 
 
