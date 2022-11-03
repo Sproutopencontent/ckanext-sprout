@@ -3,6 +3,7 @@ from datetime import datetime
 import json
 import logging
 import os
+from ratelimit import limits, sleep_and_retry
 import requests
 from .string_lookup import StringLookup
 
@@ -27,6 +28,9 @@ class Forecaster:
             for lang in languages
         }
 
+    # tomorrow.io limits us to 7 calls per second at time of writing
+    @sleep_and_retry
+    @limits(calls=7, period=1)
     def get_daily_forecasts(self, latlng):
         params = {
             **self.default_api_params,
