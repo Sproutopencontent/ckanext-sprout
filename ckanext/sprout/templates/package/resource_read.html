@@ -40,4 +40,18 @@
     </li>
   {% endif %}
 {% endblock %}
-{{ super() }}
+{% block resource_content %}
+  {% if pkg.type == 'weatherset' and res.type == 'FORECAST' %}
+    {% if res.forecast_status == 'IN_PROGRESS' %}
+      <div class="alert alert-warning" style="clear: both">
+        {{ _('This forecast is still being generated. Please wait a few minutes then') }}
+        <a href="">refresh the page</a>.
+      </div>
+    {% elif res.forecast_status == 'PARTIAL' %}
+      <div class="alert alert-error" style="clear: both">
+        {{ _('There was an issue generating this forecast, it may be incomplete.') }}
+      </div>
+    {% endif %}
+  {% endif %}
+  {{ super() }}
+{% endblock %}
