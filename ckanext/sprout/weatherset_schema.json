@@ -71,12 +71,26 @@
             "form_placeholder": "Some useful notes about the data"
         },
         {
+            "field_name": "type",
+            "label": "Resource Type",
+            "preset": "select",
+            "choices": [
+                {
+                    "label": "Locations",
+                    "value": "LOCATIONS"
+                },
+                {
+                    "label": "Forecast",
+                    "value": "FORECAST"
+                }
+            ]
+        },
+        {
             "field_name": "format",
             "label": "Format",
             "preset": "resource_format_autocomplete"
         },
         {
-
             "field_name": "language",
             "required": true,
             "label": "Languages",
@@ -93,6 +107,25 @@
                 {
                     "label": "Kiswahili",
                     "value": "SW"
+                }
+            ]
+        },
+        {
+            "field_name": "forecast_status",
+            "label": "Forecast Status",
+            "preset": "select",
+            "choices": [
+                {
+                    "label": "Complete",
+                    "value": "COMPLETE"
+                },
+                {
+                    "label": "In Progress",
+                    "value": "IN_PROGRESS"
+                },
+                {
+                    "label": "Partial",
+                    "value": "PARTIAL"
                 }
             ]
         }
