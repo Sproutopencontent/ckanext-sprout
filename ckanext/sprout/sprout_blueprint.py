@@ -2,6 +2,7 @@ from ckan.views.resource import download as download_resource
 from ckan.common import g
 import ckan.lib.helpers as h
 import flask
+import ckan.plugins.toolkit as toolkit
 
 blueprint = flask.Blueprint(
     u'sprout_blueprint',
@@ -22,6 +23,8 @@ def download_to(package_type, id, resource_id, filename=None):
         return h.redirect_to(u'user.login', came_from=came_from)
     else:
         return download_resource(package_type, id, resource_id, filename=filename)
+
+
 
 
 blueprint.add_url_rule(u'/<resource_id>/download', view_func=download_to)

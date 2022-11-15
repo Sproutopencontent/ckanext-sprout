@@ -1,0 +1,8 @@
+{% ckan_extends %}
+
+{% block users_list_inner %}
+{{ super() }}
+    {% if h.check_access('sysadmin') %}
+        {% link_for _('Download Profiles'), named_route='sp_user.download_profiles', class_='btn btn-default', icon='plus-square' %}
+    {% endif %}
+{% endblock %}

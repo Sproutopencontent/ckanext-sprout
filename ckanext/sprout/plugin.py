@@ -2,6 +2,7 @@ import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 from ckanext.sprout.sprout_blueprint import blueprint
 from ckanext.sprout.forecaster_blueprint import forecaster_blueprint
+from ckanext.sprout.user_blueprint import sp_user
 from ckanext.sprout import helpers as h
 from ckanext.pages.interfaces import IPagesSchema
 
@@ -49,4 +50,4 @@ class SproutPlugin(plugins.SingletonPlugin):
     # IBlueprint
 
     def get_blueprint(self):
-        return [blueprint, forecaster_blueprint]
+        return [blueprint, forecaster_blueprint, sp_user]
