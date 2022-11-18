@@ -475,3 +475,6 @@ a:hover {
   font-style: italic;
   font-display: swap;
 }
+#profile_download {
+    margin-bottom: 3.5%; 
+  }
